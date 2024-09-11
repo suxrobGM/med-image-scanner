@@ -1,6 +1,8 @@
 # Med Image Scanner App
 [![Backend CI](https://github.com/suxrobgm/med-image-scanner/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/suxrobgm/med-image-scanner/actions/workflows/backend-ci.yml)
 
+Med Image Scanner is a web-based platform that allows healthcare providers to view and analyze medical images such as X-rays, CT scans, and MRIs. The platform provides tools to view images, annotate them, and perform image analysis using machine learning models. The platform is designed as a companion tool for radiologists and other healthcare providers to help them diagnose diseases. It uses the DICOM standard to retrieve and display medical images from healthcare providers’ Picture Archiving and Communication System (PACS) servers.
+
 The monorepo for the Med Image Scanner app. It contains the following apps/services:
 - [Frontend](./frontend/)
 - [Backend](./backend/)
