@@ -1,4 +1,4 @@
-# Onboarding Guide
+# User Guide
 This guide will help you get started to onboard new users and healthcare providers to the platform.
 
 ## Healthcare Provider Onboarding
