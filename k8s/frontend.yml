@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: medscanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: medscannerregistry.azurecr.io/frontend:latest
+          imagePullPolicy: Always
+          env:
+            - name: NEXT_PUBLIC_BACKEND_URL
+              value: https://server.medscanner.health
+            - name: NEXT_PUBLIC_VIEWER_URL
+              value: https://viewer.medscanner.health
+          ports:
+            - containerPort: 8001
+      imagePullSecrets:
+        - name: acr-auth
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: medscanner
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      name: http
+      targetPort: 8001
+      protocol: TCP

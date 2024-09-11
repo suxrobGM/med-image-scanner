@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: medscanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: medscannerregistry.azurecr.io/backend:latest
+          imagePullPolicy: Always
+          env:
+            - name: DB_HOST
+              value: database.medscanner.svc.cluster.local
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-password
+                  key: POSTGRES_PASSWORD
+            - name: FRONTEND_URL
+              value: https://app.medscanner.health
+            - name: ML_APP_URL
+              value: https://ai.medscanner.health
+          ports:
+            - containerPort: 8000
+            #- containerPort: 4002
+      imagePullSecrets:
+        - name: acr-auth
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: medscanner
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - port: 80
+      name: http
+      targetPort: 8000
+      protocol: TCP
+    #- port: 4002
+    #  name: websocket
+    #  targetPort: 4002
+    #  protocol: TCP

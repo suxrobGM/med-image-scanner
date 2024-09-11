@@ -1,0 +1,150 @@
+{
+  "locale": "es",
+  "signInPage": {
+    "signIn": "Iniciar Sesión",
+    "passwordRequired": "Se requiere una contraseña",
+    "rememberMe": "Recordar mi sesión",
+    "forgotPassword": "¿Has olvidado tu contraseña?",
+    "wrongUsernameOrPassword": "Usuario o contraseña errada",
+    "emailIsRequired": "Correo electronico es requerido",
+    "passwordIsRequired": "Contraseña es requerida",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "selectDashboardPage": {
+    "provider": "Proveedor",
+    "radiologist": "Radiólogo",
+    "getStarted": "¡Vamos! Iniciemos"
+  },
+  "dashboard": {
+    "priority": "Prioridad",
+    "modality": "Modalidad",
+    "mri": "MRI",
+    "view": "Ver",
+    "goodMorning": "Buenos días",
+    "findAPatient": "Buscar un paciente",
+    "findAPatientDesc": "¡Manos a la obra! Busquemos un paciente para iniciar.",
+    "interfaceWalkthrough": "Recorrido por la interfaz",
+    "startTour": "Comenzar el recorrido",
+    "learningPortal": "Portal de aprendizaje",
+    "learnMore": "Aprende más",
+    "newReportsAvailable": "Nuevos informes disponibles",
+    "yearsOld": "años de edad",
+    "tabCases": "Casos",
+    "tabAllImaging": "Todas las imágenes",
+    "tabDocuments": "Documentos",
+    "addPatientMRNInstruction": "Simplemente agrega el numero MRN del paciente",
+    "hitEnterInstruction": "Presiona enter para buscar",
+    "providerDecisionSupport": "Apoyo a la decisión del proveedor",
+    "active": "Activo",
+    "stat": "Estadística",
+    "status": "Estado",
+    "startDate": "Fecha de inicio",
+    "newImages": "Nuevas Imagenes",
+    "referringPhysician": "Médico referente",
+    "backToCases": "Volver a los casos",
+    "studies": "Estudios",
+    "newImaging": "Nueva Imagen",
+    "treatments": "Tratamientos",
+    "assessments": "Evaluaciones",
+    "noNotesToDisplay": "No hay notas para mostrar",
+    "addNote": "Agregar una nota",
+    "tabTimeline": "Línea de tiempo",
+    "tabImaging": "Imágenes",
+    "tabNotes": "Notas",
+    "patientMRN": "MRN del paciente",
+    "patientNotFound": "Paciente no encontrado"
+  },
+  "home": {
+    "home": "Inicio",
+    "signUp": "Registrarse",
+    "signIn": "Iniciar sesión",
+    "getStarted": "Let&apos;s Get Started"
+  },
+  "components": {
+    "sideBar": {
+      "dashboard": "Tablero",
+      "findAPatient": "Buscar un paciente",
+      "register": "Registrarse",
+      "help": "Ayuda",
+      "settings": "Configuraciones"
+    },
+    "caseCard": {
+      "casesDiagnosisAndTreatment": "Diagnóstico del caso y tratamiento",
+      "priority": "Prioridad",
+      "stat": "Estadística",
+      "status": "Estado",
+      "startDate": "Fecha de inicio",
+      "newImaging": "Nueva Imagen",
+      "seeAll": "Ver todo...",
+      "referringPhysician": "Médico referente",
+      "viewCase": "Ver caso",
+      "active": "Activo"
+    },
+    "topBar": {
+      "search": "Buscar...",
+      "takeATour": "Tomar un tour",
+      "upgrade": "Actualizar"
+    },
+    "notificationsSideBar": {
+      "all": "Todo",
+      "mentions": "Menciones",
+      "unread": "Sin leer",
+      "notifications": "Notificaciones",
+      "newFeatureAlert": "¡Nueva funcionalidad!",
+      "learnMore": "Aprender más",
+      "minsAgo": "Hace 2 minutos",
+      "newEnhancementsIntroducing": "Estamos emocionados de compartir con ustedes las ultimas mejoras en la experiencia imaging"
+    },
+    "imagingTable": {
+      "modality": "Modalidad",
+      "bodyPart": "Parte del cuerpo",
+      "series": "Series",
+      "slices": "Piezas",
+      "loadInViewer": "Cargar en analizador",
+      "viewReport": "Ver informe",
+      "study": "Estudio",
+      "priority": "Prioridad",
+      "stat": "Estadística",
+      "routine": "Rutina",
+      "screening": "Examen",
+      "imagingDate": "Fecha Imaging",
+      "description": "Descripción",
+      "initialDiagnostics": "Diagnóstico inicial",
+      "initialDiagnosticsForPatient": "Diagnóstico inicial para el paciente",
+      "brain": "Cerebro",
+      "axial": "Axial",
+      "coronal": "Corona",
+      "treatmentResponseAssessment": "Evaluación de la respuesta al tratamiento",
+      "treatmentResponseAssessmentForPatient": "Evaluación de la respuesta al tratamiento para el paciente"
+    },
+    "documentsTable": {
+      "documentName": "Nombre del documento",
+      "law": "Ley",
+      "date": "Fecha",
+      "description": "Descripción",
+      "options": "Opciones"
+    }
+  },
+  "common": {
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "surgery": "Cirugía",
+    "chemo": "Químio",
+    "age": "Edad",
+    "gender": {
+      "value": "Género",
+      "male": "Mujer",
+      "female": "Hombre"
+    },
+    "months": {
+      "jan": "Ene",
+      "apr": "Abr"
+    },
+    "greetings": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches"
+    }
+  }
+}

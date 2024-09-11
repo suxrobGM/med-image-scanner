@@ -1,0 +1,83 @@
+# Description: This file contains the deployment and service configuration for the postgres database.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+  namespace: medscanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: database
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DATABASE
+              value: MedScannerDB
+            - name: POSTGRES_USERNAME
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-password
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-storage
+              subPath: data
+      imagePullSecrets:
+        - name: acr-auth
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+  namespace: medscanner
+  labels:
+    app: database
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5432
+  selector:
+    app: database
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: medscanner
+  labels:
+    app: database
+spec:
+  storageClassName: managed-premium
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 16Gi
+
+# Password Secret
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-password
+  namespace: medscanner
+type: Opaque
+data:
+  POSTGRES_PASSWORD: NDhMZlR1RWhqTnZRWFFEVTlkOQ== # This is the base64-encoded password '48LfTuEhjNvQXQDU9d9'

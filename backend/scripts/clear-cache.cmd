@@ -1,0 +1,3 @@
+echo Clearing python cache in the src directory...
+for /d /r ../src %%d in (__pycache__) do @if exist "%%d" rmdir /s /q "%%d"
+echo Successfully cleared python cache.

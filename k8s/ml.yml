@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml
+  namespace: medscanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml
+  template:
+    metadata:
+      labels:
+        app: ml
+    spec:
+      # node_selector:
+      #   kubernetes.azure.com/agentpool: gpupool # Deploy to GPU node pool
+      containers:
+        - name: ml
+          image: medscannerregistry.azurecr.io/ml:latest
+          imagePullPolicy: Always
+          env:
+            - name: BACKEND_URL
+              value: https://server.medscanner.health
+          ports:
+            - containerPort: 8004
+      imagePullSecrets:
+        - name: acr-auth
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml
+  namespace: medscanner
+spec:
+  type: ClusterIP
+  selector:
+    app: ml
+  ports:
+    - port: 80
+      name: http
+      targetPort: 8004
+      protocol: TCP

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: viewer
+  namespace: medscanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: viewer
+  template:
+    metadata:
+      labels:
+        app: viewer
+    spec:
+      containers:
+        - name: viewer
+          image: medscannerregistry.azurecr.io/viewer:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8002
+            - containerPort: 8003
+      imagePullSecrets:
+        - name: acr-auth
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: viewer
+  namespace: medscanner
+spec:
+  type: ClusterIP
+  selector:
+    app: viewer
+  ports:
+    - port: 80
+      name: http
+      targetPort: 8002
+      protocol: TCP
+    - port: 8003
+      name: proxy
+      targetPort: 8003
+      protocol: TCP

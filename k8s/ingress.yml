@@ -1,0 +1,90 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: medscanner
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    nginx.ingress.kubernetes.io/enable-real-ip: "true"
+    nginx.ingress.kubernetes.io/real-ip-header: "X-Forwarded-For"
+    nginx.ingress.kubernetes.io/proxy-body-size: 200m
+spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: backend
+      port:
+        number: 80
+  tls:
+    - hosts:
+        - server.medscanner.health
+      secretName: backend-cert
+    - hosts:
+        - app.medscanner.health
+      secretName: frontend-cert
+    - hosts:
+        - viewer.medscanner.health
+      secretName: viewer-cert
+    - hosts:
+        - viewer-proxy.medscanner.health
+      secretName: viewer-proxy-cert
+    - hosts:
+        - ai.medscanner.io
+      secretName: ml-cert
+
+  rules:
+    - host: server.medscanner.health
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 80
+
+    - host: app.medscanner.health
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+
+    - host: viewer.medscanner.health
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: viewer
+                port:
+                  number: 80
+
+    - host: viewer-proxy.medscanner.health
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: viewer
+                port:
+                  number: 8003
+
+    - host: ai.medscanner.health
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ml
+                port:
+                  number: 80

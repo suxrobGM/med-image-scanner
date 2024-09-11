@@ -1,0 +1,17 @@
+**/.git
+**/.gitignore
+**/.vscode
+**/.dockerignore
+**/.github
+**/.npm
+**/.venv
+**/node_modules
+**/k8s
+**/docs
+**/Dockerfile*
+**/temp
+
+kubernetes-manifest.yml
+*.md
+*.ash_history
+*.log.bkp

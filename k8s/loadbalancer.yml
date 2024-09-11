@@ -1,0 +1,33 @@
+# Load balancer service for testing purposes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-lb
+  namespace: medscanner
+spec:
+  type: LoadBalancer
+  selector:
+    app: backend
+  ports:
+    - port: 80
+      name: http
+      targetPort: 8000
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-lb
+  namespace: medscanner
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      name: http
+      targetPort: 8001
+      protocol: TCP
+

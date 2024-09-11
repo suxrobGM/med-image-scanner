@@ -1,0 +1,16 @@
+{
+  "name": "viewer",
+  "description": "OHIF viewer with proxy server",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Sukhrob Ilyosbekov",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors-anywhere": "^0.4.4",
+    "express": "^4.19.2"
+  }
+}

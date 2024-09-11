@@ -1,0 +1,14 @@
+litserve
+torch
+torchxrayvision
+opencv-python
+requests
+ultralytics
+nibabel
+pydicom
+totalsegmentator
+skimage
+ollama
+nnunetv2==2.4.2
+numpy==1.26.4
+tensorflow==2.15.0

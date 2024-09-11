@@ -1,0 +1,118 @@
+<mxfile host="Electron" modified="2024-09-11T18:43:50.323Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="yomECNfVwTpklW5i3SYt" version="24.6.4" type="device">
+  <diagram name="Page-1" id="6E_hYAVLsIWRRi1SSEwr">
+    <mxGraphModel dx="1692" dy="857" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="eczHeUilt9mbj3m8elWh-12" value="Healthcare Providers aka &quot;Organizations&quot;" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="780" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-5" value="PACS server 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-12">
+          <mxGeometry x="60" y="45" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-1" value="Healthcare provider 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-12">
+          <mxGeometry x="10" y="155" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-6" value="PACS server 2" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-12">
+          <mxGeometry x="310" y="45" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-2" value="Healthcare provider 2" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-12">
+          <mxGeometry x="260" y="155" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-3" value="Healthcare provider 3" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-12">
+          <mxGeometry x="500" y="155" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-9" value="PACS server 3" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-12">
+          <mxGeometry x="540" y="45" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="eczHeUilt9mbj3m8elWh-12" source="eczHeUilt9mbj3m8elWh-1" target="eczHeUilt9mbj3m8elWh-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="eczHeUilt9mbj3m8elWh-12" source="eczHeUilt9mbj3m8elWh-2" target="eczHeUilt9mbj3m8elWh-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.592;entryY=1.033;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="eczHeUilt9mbj3m8elWh-12" source="eczHeUilt9mbj3m8elWh-3" target="eczHeUilt9mbj3m8elWh-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="eczHeUilt9mbj3m8elWh-13" target="eczHeUilt9mbj3m8elWh-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="435" y="960" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="430" y="910" />
+              <mxPoint x="430" y="910" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-13" value="Application" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="400" width="790" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="eczHeUilt9mbj3m8elWh-13" source="eczHeUilt9mbj3m8elWh-16" target="eczHeUilt9mbj3m8elWh-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="385" y="150" />
+              <mxPoint x="265" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="eczHeUilt9mbj3m8elWh-13" source="eczHeUilt9mbj3m8elWh-16" target="eczHeUilt9mbj3m8elWh-20">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="385" y="150" />
+              <mxPoint x="590" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-16" value="Frontend container&lt;div&gt;localhost:8001&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-13">
+          <mxGeometry x="325" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="eczHeUilt9mbj3m8elWh-13" source="eczHeUilt9mbj3m8elWh-18" target="eczHeUilt9mbj3m8elWh-24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="265" y="290" />
+              <mxPoint x="340" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="eczHeUilt9mbj3m8elWh-13" source="eczHeUilt9mbj3m8elWh-18" target="eczHeUilt9mbj3m8elWh-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="265" y="290" />
+              <mxPoint x="125" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-18" value="Backend container&lt;div&gt;localhost:8000&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-13">
+          <mxGeometry x="205" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="eczHeUilt9mbj3m8elWh-13" source="eczHeUilt9mbj3m8elWh-20" target="eczHeUilt9mbj3m8elWh-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-20" value="OHIF Viewer container&lt;div&gt;localhost:8002&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-13">
+          <mxGeometry x="520" y="200" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-22" value="PostgreSQL database container&lt;div&gt;localhost:5432&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-13">
+          <mxGeometry x="50" y="340" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-24" value="ML app container&lt;div&gt;localhost:8004&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-13">
+          <mxGeometry x="280" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-27" value="Proxy Server included in the Viwer container&lt;br&gt;localhost:8003" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="eczHeUilt9mbj3m8elWh-13">
+          <mxGeometry x="515" y="310" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-30" value="Deployed to Kubernetes" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="333" y="960" width="185" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="eczHeUilt9mbj3m8elWh-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.49;entryY=-0.004;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="eczHeUilt9mbj3m8elWh-12" target="eczHeUilt9mbj3m8elWh-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="350" />
+              <mxPoint x="417" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,150 @@
+{
+  "locale": "en",
+  "signInPage": {
+    "signIn": "Sign In",
+    "passwordRequired": "Password is required",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "wrongUsernameOrPassword": "Wrong username or password",
+    "emailIsRequired": "Email is required",
+    "passwordIsRequired": "Password is required",
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "selectDashboardPage": {
+    "provider": "Provider",
+    "radiologist": "Radiologist",
+    "getStarted": "Let's Get Started"
+  },
+  "dashboard": {
+    "active": "Active",
+    "priority": "Priority",
+    "stat": "Stat",
+    "modality": "Modality",
+    "mri": "MRI",
+    "view": "View",
+    "goodMorning": "Good Morning",
+    "welcomeBack": "Welcome back!",
+    "findAPatient": "Search by MRN",
+    "findAPatientDesc": "Let's get going and find a patient to get things started.",
+    "interfaceWalkthrough": "Interface Walkthrough",
+    "startTour": "Start Tour",
+    "learningPortal": "Learning Portal",
+    "learnMore": "Learn More",
+    "newReportsAvailable": "New Reports Available",
+    "yearsOld": "years old",
+    "tabCases": "Cases",
+    "tabAllImaging": "All imaging",
+    "tabDocuments": "Documents",
+    "addPatientMRNInstruction": "Simply add the patient&apos;s MRN number",
+    "hitEnterInstruction": "Hit enter to search",
+    "providerDecisionSupport": "Provider Decision Support",
+    "status": "Status",
+    "startDate": "Start date",
+    "newImages": "New Images",
+    "referringPhysician": "Referring Physician",
+    "backToCases": "Back to cases",
+    "studies": "Studies",
+    "newImaging": "New Imaging",
+    "treatments": "Treatments",
+    "assessments": "Assessments",
+    "noNotesToDisplay": "No notes to display",
+    "addNote": "Add note",
+    "tabTimeline": "Timeline",
+    "tabImaging": "Imaging",
+    "tabNotes": "Notes",
+    "patientMRN": "Search by MRN",
+    "patientNotFound": "Patient not found"
+  },
+  "home": {
+    "home": "Home",
+    "signUp": "Sign up",
+    "signIn": "Sign in"
+  },
+  "components": {
+    "sideBar": {
+      "dashboard": "Dashboard",
+      "findAPatient": "Find a Patient",
+      "register": "Register",
+      "help": "Help",
+      "settings": "Settings"
+    },
+    "caseCard": {
+      "casesDiagnosisAndTreatment": "Cases Diagnosis and Treatment",
+      "priority": "Priority",
+      "stat": "STAT",
+      "status": "Status",
+      "startDate": "Start Date",
+      "newImaging": "New Imaging",
+      "seeAll": "See all...",
+      "referringPhysician": "Referring Physician",
+      "viewCase": "View Case",
+      "active": "Active"
+    },
+    "topBar": {
+      "search": "Patient's MRN",
+      "takeATour": "Take a Tour",
+      "upgrade": "Upgrade"
+    },
+    "notificationsSideBar": {
+      "all": "All",
+      "mentions": "Mentions",
+      "unread": "Unread",
+      "notifications": "Notifications",
+      "newFeatureAlert": "New Feature Alert!",
+      "learnMore": "Learn More",
+      "minsAgo": "2 mins ago",
+      "newEnhancementsIntroducing": "We’re pleased to introduce the latest enhancements in our imaging experience."
+    },
+    "imagingTable": {
+      "modality": "Modality",
+      "bodyPart": "Body Part",
+      "series": "Series",
+      "slices": "Slices",
+      "loadInViewer": "Load in Viewer",
+      "viewReport": "View Report",
+      "study": "Study",
+      "stat": "Stat",
+      "priority": "Priority",
+      "routine": "Routine",
+      "screening": "Screening",
+      "imagingDate": "Imaging Date",
+      "description": "Description",
+      "initialDiagnostics": "Initial Diagnostics",
+      "initialDiagnosticsForPatient": "Initial diagnostics for patient",
+      "brain": "Brain",
+      "axial": "Axial",
+      "coronal": "Coronal",
+      "treatmentResponseAssessment": "Treatment response assessment",
+      "treatmentResponseAssessmentForPatient": "Treatment response assessment for patient"
+    },
+    "documentsTable": {
+      "documentName": "Document Name",
+      "law": "Law",
+      "date": "Date",
+      "description": "Description",
+      "options": "Options"
+    }
+  },
+  "common": {
+    "email": "Email",
+    "password": "Password",
+    "surgery": "Surgery",
+    "chemo": "Chemo",
+    "age": "Age",
+    "gender": {
+      "value": "Gender",
+      "male": "Male",
+      "female": "Female"
+    },
+    "months": {
+      "jan": "Jan",
+      "apr": "Apr"
+    },
+    "greetings": {
+      "morning": "Good Morning",
+      "afternoon": "Good Afternoon",
+      "evening": "Good Evening"
+    }
+  }
+}
