@@ -1,10 +1,11 @@
 "use client";
+
 import {useEffect, useMemo, useState} from "react";
 import {Autocomplete, TextField} from "@mui/material";
 import CircularProgressIcon from "@mui/material/CircularProgress";
 import {PagedResult, UserShortDetailsDto} from "@/core/models";
-import {debounce} from "@/core/utils";
 import {ApiService} from "@/core/services";
+import {debounce} from "@/core/utils";
 
 interface UserSearchInputProps {
   organizationName?: string;
@@ -37,7 +38,6 @@ export function UserSearchInput(props: UserSearchInputProps) {
       new Promise<PagedResult<UserShortDetailsDto>>((resolve) => debouncedFetch(search, resolve));
   }, []);
 
-
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -57,12 +57,11 @@ export function UserSearchInput(props: UserSearchInputProps) {
         if (signal.aborted) {
           return;
         }
-        
+
         if (result.success && result.data) {
           setOptions(result.data);
         }
-      }
-      finally {
+      } finally {
         if (!signal.aborted) {
           setLoading(false);
         }

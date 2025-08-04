@@ -31,8 +31,10 @@ export function ConfirmDialog(props: ConfirmDialogProps) {
         <DialogContentText>{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button disabled={isLoading} onClick={props.onCancel}>Cancel</Button>
-        <Button 
+        <Button disabled={isLoading} onClick={props.onCancel}>
+          Cancel
+        </Button>
+        <Button
           color="primary"
           variant="contained"
           onClick={props.onConfirm}

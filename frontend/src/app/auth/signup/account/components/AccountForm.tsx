@@ -1,20 +1,15 @@
 "use client";
+
 import {useMemo, useRef, useState} from "react";
+import {Button, Link, Stack, Typography} from "@mui/material";
 import {jwtDecode} from "jwt-decode";
 import {useRouter} from "next/navigation";
-import {
-  Typography,
-  Link,
-  Button,
-  Stack,
-} from "@mui/material";
-import {AccountDetails} from "@/core/models";
 import {registerUserAction} from "@/app/auth/actions";
+import {AccountDetails} from "@/core/models";
 import {AccountDetailsStep} from "./AccountDetailsStep";
 import {PasswordStep} from "./PasswordStep";
 import {PrivacyAgreementStep} from "./PrivacyAgreementStep";
 import {TermsAgreementStep} from "./TermsAgreementStep";
-
 
 interface AccountFormProps {
   token: string;
@@ -80,11 +75,14 @@ export function AccountForm({token}: AccountFormProps) {
   const canSubmit = useMemo(() => stepsState.every((step) => step.isValid), [stepsState]);
 
   const updateStepValidity = (step: FormStep, isValid: boolean) => {
-    if (stepsState[step].isValid === isValid) { // No need to update if the value is the same
+    if (stepsState[step].isValid === isValid) {
+      // No need to update if the value is the same
       return;
     }
 
-    setStepsState((prevState) => prevState.map((obj) => (obj.step === step ? {...obj, isValid} : obj)));
+    setStepsState((prevState) =>
+      prevState.map((obj) => (obj.step === step ? {...obj, isValid} : obj))
+    );
   };
 
   const handleAccountDetailsValid = (details: AccountDetails) => {
@@ -120,7 +118,11 @@ export function AccountForm({token}: AccountFormProps) {
   };
 
   const handleNext = () => {
-    if (currentStep >= FormStep.ACCOUNT_DETAILS && currentStep < FormStep.PRIVACY_AGREEMENT && stepsState[currentStep].isValid) {
+    if (
+      currentStep >= FormStep.ACCOUNT_DETAILS &&
+      currentStep < FormStep.PRIVACY_AGREEMENT &&
+      stepsState[currentStep].isValid
+    ) {
       setCurrentStep((prevStep) => prevStep + 1);
     }
   };
@@ -133,13 +135,12 @@ export function AccountForm({token}: AccountFormProps) {
     if (result.success) {
       sessionStorage.setItem("account", JSON.stringify(account.current)); // Save account details to session storage for success page
       router.push(`/auth/signup/success?name=${account.current.firstName}`);
-    }
-    else if (result.error) {
+    } else if (result.error) {
       setError(result.error);
     }
 
     setIsSubmitting(false);
-  }
+  };
 
   return (
     <Stack direction="column" alignItems="center" gap={1}>
@@ -161,13 +162,14 @@ export function AccountForm({token}: AccountFormProps) {
           />
         )}
         {currentStep === FormStep.PASSWORD && (
-          <PasswordStep 
-            onValid={handlePasswordValid}
-            onInvalid={handlePasswordInvalid}
-          />
+          <PasswordStep onValid={handlePasswordValid} onInvalid={handlePasswordInvalid} />
         )}
-        {currentStep === FormStep.TERMS_AGREEMENT && <TermsAgreementStep onValid={handleTermsAgreement} />}
-        {currentStep === FormStep.PRIVACY_AGREEMENT && <PrivacyAgreementStep onValid={handlePrivacyAgreement} />}
+        {currentStep === FormStep.TERMS_AGREEMENT && (
+          <TermsAgreementStep onValid={handleTermsAgreement} />
+        )}
+        {currentStep === FormStep.PRIVACY_AGREEMENT && (
+          <PrivacyAgreementStep onValid={handlePrivacyAgreement} />
+        )}
 
         <Stack mt={2} direction="row" spacing={2}>
           {currentStep > FormStep.ACCOUNT_DETAILS && (

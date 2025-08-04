@@ -1,8 +1,14 @@
 "use client";
+
 import {Box, Typography} from "@mui/material";
 import {useOrganizationStore} from "@/core/stores";
 
-export type OhifViewerModeType = "viewer" | "segmentation" | "microscopy" | "dynamic-volume" | "tmtv";
+export type OhifViewerModeType =
+  | "viewer"
+  | "segmentation"
+  | "microscopy"
+  | "dynamic-volume"
+  | "tmtv";
 
 interface OhifViewerProps {
   width?: string;

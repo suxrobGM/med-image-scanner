@@ -1,20 +1,14 @@
 "use client";
+
 import {useEffect, useMemo, useState} from "react";
-import useSWR from "swr";
-import {
-  Grid,
-  TextField,
-  FormGroup,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
-import {MuiTelInput} from "mui-tel-input";
+import {FormControlLabel, FormGroup, Grid, Radio, RadioGroup, TextField} from "@mui/material";
 import {CountryCode} from "libphonenumber-js";
+import {MuiTelInput} from "mui-tel-input";
+import useSWR from "swr";
+import {SelectCountryInput, SelectTimezoneInput} from "@/components";
 import {AccountDetails} from "@/core/models";
 import {IPInfoService} from "@/core/services";
 import {DateUtils} from "@/core/utils";
-import {SelectCountryInput, SelectTimezoneInput} from "@/components";
 
 interface AccountDetailsStepProps {
   account?: AccountDetails;
@@ -26,7 +20,7 @@ export function AccountDetailsStep(props: AccountDetailsStepProps) {
   const {data: ipInfo} = useSWR("/ipinfo", () => IPInfoService.ins.getIPInfo());
   const defaultCountry = useMemo(() => ipInfo?.country ?? "US", []);
   const defaultTimezone = useMemo(() => DateUtils.getTimezoneString(), []);
-  
+
   const [accountDetails, setAccountDetails] = useState<AccountDetails>({
     email: props.account?.email ?? "",
     firstName: props.account?.firstName ?? "",
@@ -39,7 +33,7 @@ export function AccountDetailsStep(props: AccountDetailsStepProps) {
     role: props.account?.role,
   });
 
-  const [phoneType, setPhoneType] = useState<"mobile" | "work">("mobile"); 
+  const [phoneType, setPhoneType] = useState<"mobile" | "work">("mobile");
 
   const canContinue = useMemo(
     () => accountDetails.firstName !== "" && accountDetails.lastName !== "",
@@ -49,14 +43,16 @@ export function AccountDetailsStep(props: AccountDetailsStepProps) {
   useEffect(() => {
     if (canContinue) {
       props.onValid?.(accountDetails);
-    }
-    else {
+    } else {
       props.onInvalid?.();
     }
   }, [canContinue, accountDetails]);
 
   const handlePhoneNumber = (e: string) => {
-    setAccountDetails((prevDetails) => ({...prevDetails, [phoneType === "mobile" ? "mobilePhone" : "workPhone"]: e}));
+    setAccountDetails((prevDetails) => ({
+      ...prevDetails,
+      [phoneType === "mobile" ? "mobilePhone" : "workPhone"]: e,
+    }));
   };
 
   const handleInputChange = (field: keyof AccountDetails, value: any) => {
@@ -86,21 +82,39 @@ export function AccountDetailsStep(props: AccountDetailsStepProps) {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField value={accountDetails.email} label="Email" variant="outlined" fullWidth disabled />
+        <TextField
+          value={accountDetails.email}
+          label="Email"
+          variant="outlined"
+          fullWidth
+          disabled
+        />
       </Grid>
-      
+
       {accountDetails.role && (
         <Grid item xs={12}>
-          <TextField value={accountDetails.role} label="Role" variant="outlined" fullWidth disabled />
+          <TextField
+            value={accountDetails.role}
+            label="Role"
+            variant="outlined"
+            fullWidth
+            disabled
+          />
         </Grid>
       )}
 
       {accountDetails.organization && (
         <Grid item xs={12}>
-          <TextField value={accountDetails.organization} label="Organization" variant="outlined" fullWidth disabled />
+          <TextField
+            value={accountDetails.organization}
+            label="Organization"
+            variant="outlined"
+            fullWidth
+            disabled
+          />
         </Grid>
       )}
-      
+
       <Grid item xs={12}>
         <FormGroup>
           <MuiTelInput

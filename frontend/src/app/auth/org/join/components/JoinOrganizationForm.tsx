@@ -1,10 +1,11 @@
 "use client";
+
 import {useMemo} from "react";
-import {useFormState} from "react-dom";
-import {jwtDecode} from "jwt-decode";
 import {Stack, Typography} from "@mui/material";
-import {AlertResult, SubmitButton} from "@/components";
+import {jwtDecode} from "jwt-decode";
+import {useFormState} from "react-dom";
 import {joinOrganizationAction} from "@/app/auth/actions";
+import {AlertResult, SubmitButton} from "@/components";
 
 interface JoinOrganizationFormProps {
   token: string;
@@ -17,7 +18,7 @@ interface Token {
 }
 
 export function JoinOrganizationForm({token}: JoinOrganizationFormProps) {
-  const decodedToken = useMemo(() => jwtDecode<Token>(token), [token])
+  const decodedToken = useMemo(() => jwtDecode<Token>(token), [token]);
   const [formState, formAction] = useFormState(joinOrganizationAction, null);
 
   return (
@@ -34,14 +35,17 @@ export function JoinOrganizationForm({token}: JoinOrganizationFormProps) {
         <input type="hidden" name="token" defaultValue={token} />
 
         <Typography variant="body1">
-          You have been invited to join the organization <strong>{decodedToken.organization}</strong>
+          You have been invited to join the organization{" "}
+          <strong>{decodedToken.organization}</strong>
         </Typography>
 
         {decodedToken.role && (
           <Typography variant="body1">Your role will be {decodedToken.role}</Typography>
         )}
 
-        <SubmitButton variant="contained" sx={{alignSelf: "flex-start"}}>Join</SubmitButton>
+        <SubmitButton variant="contained" sx={{alignSelf: "flex-start"}}>
+          Join
+        </SubmitButton>
       </Stack>
     </form>
   );

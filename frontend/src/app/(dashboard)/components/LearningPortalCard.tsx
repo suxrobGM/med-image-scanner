@@ -1,7 +1,8 @@
 "use client";
-import {useTranslations} from "next-intl";
+
 import {ArrowForward, SchoolOutlined} from "@mui/icons-material";
-import {Stack, Box, Typography} from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
+import {useTranslations} from "next-intl";
 import {DashboardCard, DashboardCardColorButton} from "./DashboardCard";
 
 export function LearningPortalCard() {
@@ -9,7 +10,12 @@ export function LearningPortalCard() {
 
   return (
     <DashboardCard backgroundImage="linear-gradient(180deg, rgba(26,108,192,1) 0%, rgba(191,197,212,0.2) 100%);">
-      <Stack direction="column" justifyContent="space-between" alignItems="stretch" sx={{height: "100%"}}>
+      <Stack
+        direction="column"
+        justifyContent="space-between"
+        alignItems="stretch"
+        sx={{height: "100%"}}
+      >
         <Box>
           <Stack spacing={1} direction="row" alignItems="center" mb={2}>
             <SchoolOutlined sx={{color: "white"}} />
@@ -44,7 +50,8 @@ export function LearningPortalCard() {
             size="large"
             fullWidth
             sx={{
-              backgroundImage: "linear-gradient(90deg, rgba(101,204,219,0.75) 0%, rgba(54,122,209,0.7) 100%);",
+              backgroundImage:
+                "linear-gradient(90deg, rgba(101,204,219,0.75) 0%, rgba(54,122,209,0.7) 100%);",
             }}
           >
             {t("dashboard.learnMore")}

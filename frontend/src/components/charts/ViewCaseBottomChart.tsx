@@ -1,6 +1,6 @@
 import React from "react";
-import {LineChart, Line, XAxis, YAxis, Tooltip} from "recharts";
 import {useTranslations} from "next-intl";
+import {Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
 
 export default function ViewCaseBottomChart() {
   const t = useTranslations();
@@ -70,8 +70,18 @@ export default function ViewCaseBottomChart() {
         strokeWidth={4}
         activeDot={{r: 8}}
       />
-      <Line type="monotone" dataKey={t("components.viewCaseChart.lesion2")} stroke="#62dfad" strokeWidth={4} />
-      <Line type="monotone" dataKey={t("components.viewCaseChart.kidneyLesion")} stroke="#434ce6" strokeWidth={4} />
+      <Line
+        type="monotone"
+        dataKey={t("components.viewCaseChart.lesion2")}
+        stroke="#62dfad"
+        strokeWidth={4}
+      />
+      <Line
+        type="monotone"
+        dataKey={t("components.viewCaseChart.kidneyLesion")}
+        stroke="#434ce6"
+        strokeWidth={4}
+      />
     </LineChart>
   );
 }

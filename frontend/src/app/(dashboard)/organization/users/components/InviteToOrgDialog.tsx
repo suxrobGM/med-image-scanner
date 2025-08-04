@@ -1,6 +1,6 @@
 "use client";
+
 import {useState} from "react";
-import {useFormState, useFormStatus} from "react-dom";
 import {
   Box,
   Button,
@@ -14,10 +14,10 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
+import {useFormState, useFormStatus} from "react-dom";
+import {inviteToOrgAction} from "@/app/(dashboard)/organization/actions";
 import {AlertResult} from "@/components";
 import {UserRoleType} from "@/core/models";
-import {inviteToOrgAction} from "@/app/(dashboard)/organization/actions";
-
 
 interface InviteToOrgDialogProps {
   /**
@@ -31,7 +31,7 @@ export function InviteToOrgDialog(props: InviteToOrgDialogProps) {
   const [open, setOpen] = useState(false);
   const [result, formAction] = useFormState(inviteToOrgAction, null);
   const {pending} = useFormStatus();
-  
+
   return (
     <Box>
       <Button variant="contained" color="primary" onClick={() => setOpen(true)}>

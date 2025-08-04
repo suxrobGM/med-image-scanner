@@ -1,7 +1,18 @@
 "use client";
-import {useRouter} from "next/navigation";
-import {Box, Card, CardContent, Typography, CardActions, Button, Stack, Grid, Divider} from "@mui/material";
+
 import {CheckCircleOutline} from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import {useRouter} from "next/navigation";
 
 interface CardProps {
   price: number;

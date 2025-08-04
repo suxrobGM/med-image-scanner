@@ -1,8 +1,9 @@
 "use client";
-import {useRouter} from "next/navigation";
-import {useTranslations} from "next-intl";
-import {Box, Stack, TextField, Typography} from "@mui/material";
+
 import {KeyboardReturnOutlined, PersonSearchOutlined} from "@mui/icons-material";
+import {Box, Stack, TextField, Typography} from "@mui/material";
+import {useTranslations} from "next-intl";
+import {useRouter} from "next/navigation";
 import {DbSearchIcon} from "@/components/icons";
 
 export default function PatientSearchForm() {

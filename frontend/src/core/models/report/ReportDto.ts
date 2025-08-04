@@ -1,6 +1,6 @@
-import {FindingDto} from "./FindingDto";
 import {PatientDto} from "../PatientDto";
 import {UserDto} from "../user";
+import {FindingDto} from "./FindingDto";
 
 export interface ReportDto {
   id: string;

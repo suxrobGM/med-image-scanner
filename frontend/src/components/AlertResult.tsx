@@ -1,8 +1,8 @@
 "use client";
+
 import {useEffect, useState} from "react";
 import {Alert} from "@mui/material";
 import {Result} from "@/core/models";
-
 
 interface AlertResultProps {
   result: Result | null;
@@ -29,11 +29,12 @@ export function AlertResult(props: AlertResultProps) {
 
   const successText = props.successText || "Success!";
   const errorText = `${props.errorText || "Error"}: ${props.result.error ?? ""}`;
-  
+
   return (
-    <Alert 
+    <Alert
       severity={props.result.success ? "success" : "error"}
-      onClose={() => setShowAlert(false)}>
+      onClose={() => setShowAlert(false)}
+    >
       {props.result.success ? successText : errorText}
     </Alert>
   );

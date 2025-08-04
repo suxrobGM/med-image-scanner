@@ -5,11 +5,14 @@
 
 //@ts-ignore
 import {Session} from "next-auth";
-
 //@ts-ignore
 import {useSession} from "next-auth/react";
 import useSWR, {SWRResponse} from "swr";
 import {PagedQuery} from "@/core/models";
+
+/**
+ * Hook functions for SWR data fetching.
+ */
 
 interface SWRPaginationResponse<T> extends SWRResponse<T, any, any> {
   key: string;
@@ -21,7 +24,10 @@ interface SWRPaginationResponse<T> extends SWRResponse<T, any, any> {
  * @param fetcher Fetcher function
  * @returns SWR response
  */
-export function useSWRWithSession<T>(key: string, fetcher: (session: Session) => Promise<T>): SWRResponse<T, any, any> {
+export function useSWRWithSession<T>(
+  key: string,
+  fetcher: (session: Session) => Promise<T>
+): SWRResponse<T, any, any> {
   const {data: session} = useSession();
   return useSWR<T>(session ? key : null, () => fetcher(session!));
 }
@@ -40,6 +46,6 @@ export function useSWRPagination<T>(
   fetcher: (pageModel: PagedQuery) => Promise<T>
 ): SWRPaginationResponse<T> {
   const fullKey = `${key}?page=${pageModel.page}&pageSize=${pageModel.pageSize}&orderBy=${pageModel.orderBy}`;
-  const swrResponse = useSWR<T>(fullKey, () =>fetcher(pageModel));
+  const swrResponse = useSWR<T>(fullKey, () => fetcher(pageModel));
   return {...swrResponse, key: fullKey};
 }

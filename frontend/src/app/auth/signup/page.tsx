@@ -9,7 +9,13 @@ export default function GetStartedPage() {
         </Typography>
       </Box>
       <Box width={400}>
-        <Button href="/auth/signup/account-type" fullWidth size="large" variant="contained" color="primary">
+        <Button
+          href="/auth/signup/account-type"
+          fullWidth
+          size="large"
+          variant="contained"
+          color="primary"
+        >
           Get Started
         </Button>
       </Box>

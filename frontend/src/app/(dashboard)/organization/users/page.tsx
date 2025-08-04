@@ -1,6 +1,6 @@
 import {Container, Stack, Typography} from "@mui/material";
-import {auth} from "@/auth";
 import {UsersGrid} from "@/app/(dashboard)/admin/users/components";
+import {auth} from "@/auth";
 import {InviteToOrgDialog} from "./components";
 
 export default async function OrganizationUsersPage() {
@@ -13,7 +13,11 @@ export default async function OrganizationUsersPage() {
   const organizationName = session.user?.organization;
 
   if (!organizationName) {
-    return <Typography variant="h4">You need to be a member of an organization to view this page</Typography>;
+    return (
+      <Typography variant="h4">
+        You need to be a member of an organization to view this page
+      </Typography>
+    );
   }
 
   return (

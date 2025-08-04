@@ -36,12 +36,15 @@ export class PaginationUtils {
    * @param additionalParams Additional query parameters
    * @returns URL query parameters
    */
-  static pagedQueryToParams(query: PagedQuery, additionalParams?: Record<string, string | undefined | null>): string {
+  static pagedQueryToParams(
+    query: PagedQuery,
+    additionalParams?: Record<string, string | undefined | null>
+  ): string {
     const params = new URLSearchParams();
     const page = query.zeroBased ? query.page + 1 : query.page;
     params.append("page", page.toString());
     params.append("pageSize", query.pageSize.toString());
-    
+
     if (query.orderBy) {
       params.append("orderBy", query.orderBy);
     }
@@ -63,7 +66,10 @@ export class PaginationUtils {
    * @param additionalParams Additional query parameters
    * @returns URL query parameters
    */
-  static searchableQueryToParams(query: SearchableQuery, additionalParams?: Record<string, string | undefined | null>): string {
+  static searchableQueryToParams(
+    query: SearchableQuery,
+    additionalParams?: Record<string, string | undefined | null>
+  ): string {
     const params = new URLSearchParams(this.pagedQueryToParams(query, additionalParams));
 
     if (query.search) {

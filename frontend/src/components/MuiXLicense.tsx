@@ -1,4 +1,5 @@
 "use client";
+
 import {LicenseInfo} from "@mui/x-license";
 
 LicenseInfo.setLicenseKey(

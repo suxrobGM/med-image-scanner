@@ -1,6 +1,6 @@
 export interface AnnotationDto {
   id: string;
-  title: string
+  title: string;
   description?: string;
   x: number;
   y: number;

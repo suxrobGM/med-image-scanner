@@ -1,10 +1,11 @@
 "use client";
+
 import {useCallback, useState} from "react";
-import {useTranslations} from "next-intl";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import {Box, Stack, Tab} from "@mui/material";
-import {StudiesTab} from "./StudiesTab";
+import {useTranslations} from "next-intl";
 import {DocumentsTab} from "./DocumentsTab";
+import {StudiesTab} from "./StudiesTab";
 
 interface PatientTabContentProps {
   patientId: string;
@@ -22,7 +23,10 @@ export function PatientTabContent(props: PatientTabContentProps) {
   const [tabContentHeader, setTabContentHeader] = useState("");
 
   const handleTabChange = useCallback((_: any, newValue: TabValue) => setTabValue(newValue), []);
-  const handleTabDataFetched = useCallback((totalItems: number, dataType: string) => setTabContentHeader(`${totalItems} ${dataType}`), []);
+  const handleTabDataFetched = useCallback(
+    (totalItems: number, dataType: string) => setTabContentHeader(`${totalItems} ${dataType}`),
+    []
+  );
 
   return (
     <TabContext value={tabValue}>
@@ -36,26 +40,31 @@ export function PatientTabContent(props: PatientTabContentProps) {
         }}
       >
         <TabList onChange={handleTabChange}>
-          <Tab label={t("dashboard.tabAllImaging")} value={TabValue.STUDIES} sx={{textTransform: "none"}} />
+          <Tab
+            label={t("dashboard.tabAllImaging")}
+            value={TabValue.STUDIES}
+            sx={{textTransform: "none"}}
+          />
           {/* <Tab label={t("dashboard.tabCases")} value={TabValue.CASES} sx={{textTransform: "none"}} /> */}
-          <Tab label={t("dashboard.tabDocuments")} value={TabValue.DOCUMENTS} sx={{textTransform: "none"}} />
+          <Tab
+            label={t("dashboard.tabDocuments")}
+            value={TabValue.DOCUMENTS}
+            sx={{textTransform: "none"}}
+          />
         </TabList>
         <Box display="flex" justifyContent="flex-end" p={2}>
           {tabContentHeader}
         </Box>
       </Stack>
       <TabPanel value={TabValue.STUDIES}>
-        <StudiesTab 
+        <StudiesTab
           patientId={props.patientId}
           organization={props.organization}
-          onDataFetched={handleTabDataFetched} 
+          onDataFetched={handleTabDataFetched}
         />
       </TabPanel>
       <TabPanel value={TabValue.DOCUMENTS}>
-        <DocumentsTab 
-          patientId={props.patientId}
-          onDataFetched={handleTabDataFetched}
-        />
+        <DocumentsTab patientId={props.patientId} onDataFetched={handleTabDataFetched} />
       </TabPanel>
     </TabContext>
   );

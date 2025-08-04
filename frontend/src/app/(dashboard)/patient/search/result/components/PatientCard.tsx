@@ -1,6 +1,7 @@
 "use client";
-import {useTranslations} from "next-intl";
+
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
+import {useTranslations} from "next-intl";
 import {PatientDto} from "@/core/models";
 import {DateUtils, UserUtils} from "@/core/utils";
 

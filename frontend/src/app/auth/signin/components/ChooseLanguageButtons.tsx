@@ -1,7 +1,8 @@
 "use client";
+
+import {Button, Stack} from "@mui/material";
 import {useTranslations} from "next-intl";
 import {useRouter} from "next/navigation";
-import {Stack, Button} from "@mui/material";
 
 export function ChooseLanguageButtons() {
   const router = useRouter();

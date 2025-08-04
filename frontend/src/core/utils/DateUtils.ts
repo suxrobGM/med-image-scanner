@@ -24,12 +24,14 @@ export class DateUtils {
 
   /**
    * Get the user timezone offset in the format of UTC±HH
-   * @returns 
+   * @returns
    */
   static getTimezoneString(): string {
     const offset = new Date().getTimezoneOffset();
     const sign = offset > 0 ? "-" : "+";
-    const hours = Math.floor(Math.abs(offset) / 60).toString().padStart(2, "0");
+    const hours = Math.floor(Math.abs(offset) / 60)
+      .toString()
+      .padStart(2, "0");
     // const minutes = (Math.abs(offset) % 60).toString().padStart(2, "0");
 
     return `UTC${sign}${hours}`;

@@ -1,7 +1,7 @@
 import {fixupConfigRules} from "@eslint/compat";
 import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
 import nextConfig from "eslint-config-next";
+import tseslint from "typescript-eslint";
 
 export default [
   {

@@ -1,7 +1,8 @@
 "use client";
-import {Card, Box, Button, ButtonProps, styled} from "@mui/material";
-import {purple} from "@mui/material/colors";
+
 import {ReactNode} from "react";
+import {Box, Button, ButtonProps, Card, styled} from "@mui/material";
+import {purple} from "@mui/material/colors";
 
 interface DashboardCardProps {
   children?: ReactNode;
@@ -24,7 +25,9 @@ export function DashboardCard({children, backgroundImage}: DashboardCardProps) {
       sx={{
         borderRadius: 4,
         backgroundColor: "transparent",
-        backgroundImage: backgroundImage || "linear-gradient(180deg, rgba(38,191,181,1) 0%, rgba(200,200,215,0.2) 75%)",
+        backgroundImage:
+          backgroundImage ||
+          "linear-gradient(180deg, rgba(38,191,181,1) 0%, rgba(200,200,215,0.2) 75%)",
         backdropFilter: "blur(10px)", // apply blur effect
       }}
     >

@@ -1,6 +1,7 @@
 "use client";
-import Link from "next/link";
+
 import {Pagination, PaginationItem} from "@mui/material";
+import Link from "next/link";
 
 interface LinkPaginationProps {
   href: string;

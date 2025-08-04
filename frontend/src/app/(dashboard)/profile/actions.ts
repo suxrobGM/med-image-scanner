@@ -1,12 +1,12 @@
-"use server"
-import {
-  Result,
-  UpdatePasswordCommand,
-  UpdateProfileCommand,
-} from "@/core/models";
+"use server";
+
+import {Result, UpdatePasswordCommand, UpdateProfileCommand} from "@/core/models";
 import {ApiService} from "@/core/services";
 
-export async function updateProfileAction(prevState: Result | null, formData: FormData): Promise<Result> {
+export async function updateProfileAction(
+  prevState: Result | null,
+  formData: FormData
+): Promise<Result> {
   const command: UpdateProfileCommand = {
     userId: formData.get("userId") as string,
     firstName: formData.get("firstName") as string,
@@ -19,7 +19,10 @@ export async function updateProfileAction(prevState: Result | null, formData: Fo
   return ApiService.ins.updateProfile(command);
 }
 
-export async function updatePasswordAction(prevState: Result | null, formData: FormData): Promise<Result> {
+export async function updatePasswordAction(
+  prevState: Result | null,
+  formData: FormData
+): Promise<Result> {
   const command: UpdatePasswordCommand = {
     userId: formData.get("userId") as string,
     oldPassword: formData.get("oldPassword") as string,

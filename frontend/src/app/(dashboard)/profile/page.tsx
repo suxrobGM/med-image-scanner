@@ -1,5 +1,5 @@
-import {auth} from "@/auth";
 import {Typography} from "@mui/material";
+import {auth} from "@/auth";
 import {ApiService} from "@/core/services";
 import {UserProfilePanel} from "./components";
 

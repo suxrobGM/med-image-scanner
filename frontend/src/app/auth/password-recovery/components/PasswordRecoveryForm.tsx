@@ -1,13 +1,13 @@
 "use client";
-import {useFormState} from "react-dom";
+
 import {Stack, TextField, Typography} from "@mui/material";
+import {useFormState} from "react-dom";
 import {requestPasswordRecoveryAction} from "@/app/auth/actions";
 import {AlertResult, SubmitButton} from "@/components";
 
-
 export function PasswordRecoveryForm() {
   const [formState, formAction] = useFormState(requestPasswordRecoveryAction, null);
-  
+
   return (
     <form action={formAction}>
       <Stack direction="column" gap={3}>

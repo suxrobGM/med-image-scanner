@@ -1,5 +1,6 @@
 "use server";
-import {Result, InviteToOrgCommand} from "@/core/models";
+
+import {InviteToOrgCommand, Result} from "@/core/models";
 import {ApiService} from "@/core/services";
 
 export async function inviteToOrgAction(prevState: Result | null, data: FormData): Promise<Result> {
@@ -12,7 +13,6 @@ export async function inviteToOrgAction(prevState: Result | null, data: FormData
     role,
     organization,
   };
-  
 
   return ApiService.ins.inviteToOrg(command);
 }

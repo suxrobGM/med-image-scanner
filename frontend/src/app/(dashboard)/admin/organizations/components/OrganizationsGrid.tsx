@@ -1,18 +1,18 @@
 "use client";
+
 import {ReactElement, useState} from "react";
-import {useRouter} from "next/navigation";
-import {mutate} from "swr";
-import {useSnackbar} from "notistack";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import {Box, Tooltip} from "@mui/material";
 import {DataGridPro, GridActionsCellItem, GridActionsCellItemProps} from "@mui/x-data-grid-pro";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {useRouter} from "next/navigation";
+import {useSnackbar} from "notistack";
+import {mutate} from "swr";
+import {useConfirmDialog} from "@/components";
 import {DEFAULT_ORGANIZATION} from "@/core/consts";
-import {ApiService} from "@/core/services";
 import {useSWRPagination} from "@/core/hooks";
 import {OrganizationDto} from "@/core/models";
-import {useConfirmDialog} from "@/components";
-
+import {ApiService} from "@/core/services";
 
 export function OrganizationsGrid() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export function OrganizationsGrid() {
   const {
     data: result,
     isLoading,
-    key: fetchOrganizationsKey
+    key: fetchOrganizationsKey,
   } = useSWRPagination("organizations", paginationModel, (pageModel) =>
     ApiService.ins.getOrganizations(pageModel)
   );
@@ -46,22 +46,21 @@ export function OrganizationsGrid() {
       isLoading: isDeleting,
       onConfirm: () => deleteOrganization(organization.id),
     });
-  }
+  };
 
   const deleteOrganization = async (id: string) => {
     setIsDeleting(true);
     const result = await ApiService.ins.deleteOrganization(id);
-    
+
     if (result.success) {
       mutate(fetchOrganizationsKey);
       enqueueSnackbar("Organization deleted successfully", {variant: "success"});
-    }
-    else {
+    } else {
       enqueueSnackbar(`Failed to delete organization, ${result.error}`, {variant: "error"});
     }
-    
+
     setIsDeleting(false);
-  }
+  };
 
   return (
     <DataGridPro
@@ -95,23 +94,31 @@ export function OrganizationsGrid() {
           headerName: "Actions",
           getActions: ({row}) => {
             const actions: ReactElement<GridActionsCellItemProps>[] = [];
-            
+
             actions.push(
               <Tooltip title="Edit" arrow>
-                <GridActionsCellItem icon={<EditIcon />} label="Edit" onClick={() => handleEdit(row.id)} />
+                <GridActionsCellItem
+                  icon={<EditIcon />}
+                  label="Edit"
+                  onClick={() => handleEdit(row.id)}
+                />
               </Tooltip>
             );
 
             if (row.name !== DEFAULT_ORGANIZATION) {
               actions.push(
                 <Tooltip title="Delete" arrow>
-                  <GridActionsCellItem icon={<DeleteIcon />} label="Delete" onClick={showConfirmDelete(row)} />
+                  <GridActionsCellItem
+                    icon={<DeleteIcon />}
+                    label="Delete"
+                    onClick={showConfirmDelete(row)}
+                  />
                 </Tooltip>
               );
             }
             return actions;
-          }
-        }
+          },
+        },
       ]}
     />
   );

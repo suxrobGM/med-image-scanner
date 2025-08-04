@@ -1,15 +1,15 @@
 "use client";
+
 import {useState} from "react";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {
-  InputAdornment,
-  IconButton,
   FormControl,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
   InputLabel,
   OutlinedInput,
-  FormHelperText,
 } from "@mui/material";
-import {VisibilityOff, Visibility} from "@mui/icons-material";
-
 
 interface PasswordInputProps {
   name?: string;
@@ -47,8 +47,8 @@ export function PasswordInput(props: PasswordInputProps) {
               </IconButton>
             </InputAdornment>
           )
-        }>
-      </OutlinedInput>
+        }
+      ></OutlinedInput>
       {props.helperText && <FormHelperText error={props.error}>{props.helperText}</FormHelperText>}
     </FormControl>
   );

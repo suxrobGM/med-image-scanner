@@ -4,7 +4,7 @@ import {LetsGoButton} from "./components";
 interface SignUpSuccessPageProps {
   searchParams?: {
     name?: string;
-  }
+  };
 }
 
 export default function SignUpSuccessPage({searchParams}: SignUpSuccessPageProps) {

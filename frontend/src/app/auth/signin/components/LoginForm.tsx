@@ -1,19 +1,19 @@
 "use client";
-import {useFormState, useFormStatus} from "react-dom";
-import {useTranslations} from "next-intl";
+
 import {
-  Grid,
-  Typography,
   Box,
-  TextField,
-  Stack,
-  FormControlLabel,
-  Checkbox,
   Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
+import {useTranslations} from "next-intl";
+import {useFormState, useFormStatus} from "react-dom";
 import {signInUserAction} from "@/app/auth/actions";
 import {ChooseLanguageButtons} from "./ChooseLanguageButtons";
-
 
 export function LoginForm() {
   const t = useTranslations();
@@ -55,7 +55,11 @@ export function LoginForm() {
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} justifyContent="space-between">
-            <FormControlLabel control={<Checkbox />} label={t("signInPage.rememberMe")} sx={{mb: 0}} />
+            <FormControlLabel
+              control={<Checkbox />}
+              label={t("signInPage.rememberMe")}
+              sx={{mb: 0}}
+            />
             <Button href="/auth/password-recovery" variant="text" color="error">
               {t("signInPage.forgotPassword")}
             </Button>

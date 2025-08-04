@@ -1,10 +1,8 @@
 "use client";
+
 import {useEffect, useMemo, useState} from "react";
-import {
-  Typography,
-  Stack,
-} from "@mui/material";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
+import {Stack, Typography} from "@mui/material";
 import {PasswordInput} from "@/components";
 
 interface PasswordValidatorProps {
@@ -39,7 +37,7 @@ const initialRequirements = [
 ];
 
 /**
- * Password inputs with validation requirements. 
+ * Password inputs with validation requirements.
  * It has two password inputs, one for the password and one for the confirmation.
  * It will call `onValid` when all requirements are met.
  */
@@ -64,8 +62,7 @@ export function PasswordValidator(props: PasswordValidatorProps) {
   useEffect(() => {
     if (canContinue) {
       props.onValid?.(password);
-    }
-    else {
+    } else {
       props.onInvalid?.();
     }
   }, [canContinue]);

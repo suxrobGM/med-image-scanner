@@ -1,11 +1,12 @@
 "use client";
+
 import {useState} from "react";
-import {useFormState} from "react-dom";
 import {Stack, TextField, Typography} from "@mui/material";
 import {MuiTelInput} from "mui-tel-input";
-import {UserDto} from "@/core/models";
-import {AlertResult, SelectCountryInput, SelectTimezoneInput, SubmitButton} from "@/components";
+import {useFormState} from "react-dom";
 import {updateProfileAction} from "@/app/(dashboard)/profile/actions";
+import {AlertResult, SelectCountryInput, SelectTimezoneInput, SubmitButton} from "@/components";
+import {UserDto} from "@/core/models";
 
 interface UserProfileTabProps {
   user: UserDto;
@@ -28,24 +29,9 @@ export function UserProfileTab({user}: UserProfileTabProps) {
         />
 
         <input name="userId" type="hidden" defaultValue={user.id} />
-        <TextField
-          name="email"
-          label="Email"
-          defaultValue={user.email}
-          disabled
-        />
-        <TextField
-          name="firstName"
-          label="First Name"
-          defaultValue={user.firstName}
-          required
-        />
-        <TextField
-          name="lastName"
-          label="Last Name"
-          defaultValue={user.lastName}
-          required
-        />
+        <TextField name="email" label="Email" defaultValue={user.email} disabled />
+        <TextField name="firstName" label="First Name" defaultValue={user.firstName} required />
+        <TextField name="lastName" label="Last Name" defaultValue={user.lastName} required />
 
         <input type="hidden" name="mobilePhone" value={mobilePhone} />
         <MuiTelInput
@@ -65,24 +51,13 @@ export function UserProfileTab({user}: UserProfileTabProps) {
           onChange={(value) => setWorkPhone(value)}
         />
 
-        <SelectCountryInput
-          name="country"
-          label="Country"
-          defaultValue={user.country}
-        />
-        <SelectTimezoneInput
-          name="timezone"
-          label="Timezone"
-          defaultValue={user.timezone}
-        />
+        <SelectCountryInput name="country" label="Country" defaultValue={user.country} />
+        <SelectTimezoneInput name="timezone" label="Timezone" defaultValue={user.timezone} />
 
-        <SubmitButton 
-          variant="contained"
-          sx={{alignSelf: "flex-start"}}
-        >
+        <SubmitButton variant="contained" sx={{alignSelf: "flex-start"}}>
           Update Profile
         </SubmitButton>
       </Stack>
     </form>
-  )
+  );
 }

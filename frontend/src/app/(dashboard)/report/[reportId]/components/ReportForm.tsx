@@ -1,24 +1,16 @@
 "use client";
+
 import {useState} from "react";
-import {useSnackbar} from "notistack";
-import {
-  Avatar,
-  Box, 
-  Divider,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import {teal} from "@mui/material/colors";
 import SendIcon from "@mui/icons-material/Send";
+import {Avatar, Box, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
+import {teal} from "@mui/material/colors";
+import {useSnackbar} from "notistack";
+import {updateReportAction} from "@/app/(dashboard)/report/actions";
+import {SubmitButton} from "@/components";
 import {FindingDto, ReportDto, UpdateReportCommand, UserDto} from "@/core/models";
 import {DateUtils, UserUtils} from "@/core/utils";
-import {SubmitButton} from "@/components";
-import {updateReportAction} from "@/app/(dashboard)/report/actions";
 import {FindingCard} from "./FindingCard";
 import {SignButton} from "./SignButton";
-
 
 interface ReportFormProps {
   report: ReportDto;
@@ -37,7 +29,7 @@ export function ReportForm(props: ReportFormProps) {
     setReport((prev) => ({
       ...prev,
       signedAt: new Date().toISOString(),
-      referringPhysician: props.user
+      referringPhysician: props.user,
     }));
   };
 
@@ -47,13 +39,12 @@ export function ReportForm(props: ReportFormProps) {
 
     if (index === -1) {
       newFindings.push(finding);
-    }
-    else {
+    } else {
       newFindings[index] = finding;
     }
 
     setReport((prev) => ({...prev, findings: newFindings}));
-  }
+  };
 
   const handleFormSubmit = async (data: FormData) => {
     const command: UpdateReportCommand = {
@@ -72,8 +63,7 @@ export function ReportForm(props: ReportFormProps) {
 
     if (result.success) {
       enqueueSnackbar("Report updated successfully", {variant: "success"});
-    }
-    else {
+    } else {
       enqueueSnackbar(result.error!, {variant: "error"});
     }
   };
@@ -174,7 +164,9 @@ export function ReportForm(props: ReportFormProps) {
           </Stack>
 
           {report.signedAt ? (
-            <Typography variant="body2" color="GrayText">Signed at {DateUtils.formatDateTime(report.signedAt)}</Typography>
+            <Typography variant="body2" color="GrayText">
+              Signed at {DateUtils.formatDateTime(report.signedAt)}
+            </Typography>
           ) : (
             <SignButton onSign={handleSign} />
           )}

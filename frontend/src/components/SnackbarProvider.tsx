@@ -1,4 +1,5 @@
 "use client";
+
 import {ReactNode} from "react";
 import {SnackbarProvider as NotistackSnackbarProvider} from "notistack";
 

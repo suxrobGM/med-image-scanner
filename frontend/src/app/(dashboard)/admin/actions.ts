@@ -1,4 +1,5 @@
 "use server";
+
 import {redirect} from "next/navigation";
 import {
   CreateOrganizationCommand,
@@ -8,7 +9,10 @@ import {
 } from "@/core/models";
 import {ApiService} from "@/core/services";
 
-export async function updateOrganizationAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function updateOrganizationAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const id = data.get("id")!.toString();
   const name = data.get("name")?.toString();
   const displayName = data.get("displayName")?.toString();
@@ -30,7 +34,10 @@ export async function updateOrganizationAction(prevState: Result | null, data: F
   return ApiService.ins.updateOrganization(command);
 }
 
-export async function createOrganizationAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function createOrganizationAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const name = data.get("name")!.toString();
   const displayName = data.get("displayName")?.toString();
   const dicomUrl = data.get("dicomUrl")!.toString();
@@ -67,7 +74,10 @@ export async function inviteUserAction(prevState: Result | null, data: FormData)
   return ApiService.ins.inviteUser({email, role, organization});
 }
 
-export async function addOrganizationAdminAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function addOrganizationAdminAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const userId = data.get("userId")!.toString();
   const organization = data.get("organizationName")!.toString();
   return ApiService.ins.updateUserRole({
@@ -77,7 +87,10 @@ export async function addOrganizationAdminAction(prevState: Result | null, data:
   });
 }
 
-export async function updateUserRoleAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function updateUserRoleAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const userId = data.get("userId")!.toString();
   const role = data.get("role")!.toString();
   const organization = data.get("organization")?.toString();
@@ -89,7 +102,10 @@ export async function updateUserRoleAction(prevState: Result | null, data: FormD
   });
 }
 
-export async function updateUserOrgAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function updateUserOrgAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const userId = data.get("userId")!.toString();
   const organization = data.get("organization")!.toString();
   return ApiService.ins.updateUserOrganization({userId, organization});

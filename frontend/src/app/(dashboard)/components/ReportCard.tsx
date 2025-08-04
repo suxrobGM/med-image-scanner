@@ -1,9 +1,10 @@
 "use client";
-import {useTranslations} from "next-intl";
-import {Card, Box, Stack, Typography, Divider, Button} from "@mui/material";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+
 import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
-import {StatIcon, ModalityIcon} from "@/components/icons";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import {Box, Button, Card, Divider, Stack, Typography} from "@mui/material";
+import {useTranslations} from "next-intl";
+import {ModalityIcon, StatIcon} from "@/components/icons";
 import {ReportDto} from "@/core/models";
 import {DateUtils} from "@/core/utils";
 
@@ -17,10 +18,14 @@ export function ReportCard({report}: ReportCardProps) {
   return (
     <Card sx={{maxWidth: "400px"}}>
       <Box p={2}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2} mb={2}>
-          <Typography variant="h6">
-            {report.patient.name}
-          </Typography>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          spacing={2}
+          mb={2}
+        >
+          <Typography variant="h6">{report.patient.name}</Typography>
           <Typography variant="body1">MRN {report.patient.mrn}</Typography>
         </Stack>
         <Divider />
@@ -44,12 +49,22 @@ export function ReportCard({report}: ReportCardProps) {
           </Box>
         </Stack>
         <Divider />
-        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={4} mt={2}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          spacing={4}
+          mt={2}
+        >
           <Stack direction="row" alignItems="center" justifyContent="center" spacing={1}>
             <TodayOutlinedIcon />
             <Typography variant="body2">{DateUtils.formatDate(report.createdAt)}</Typography>
           </Stack>
-          <Button href={`/report/${report.id}`} variant="outlined" endIcon={<VisibilityOutlinedIcon />}>
+          <Button
+            href={`/report/${report.id}`}
+            variant="outlined"
+            endIcon={<VisibilityOutlinedIcon />}
+          >
             {t("dashboard.view")}
           </Button>
         </Stack>

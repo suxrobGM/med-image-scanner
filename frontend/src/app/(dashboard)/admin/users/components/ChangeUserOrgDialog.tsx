@@ -1,17 +1,11 @@
 "use client";
+
 import {useState} from "react";
+import {Button, Dialog, DialogContent, DialogContentText, DialogTitle, Stack} from "@mui/material";
 import {useFormState} from "react-dom";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  Button,
-  Stack,
-} from "@mui/material";
-import {UserDto} from "@/core/models";
-import {AlertResult, OrganizationSearchInput, SubmitButton} from "@/components";
 import {updateUserOrgAction} from "@/app/(dashboard)/admin/actions";
+import {AlertResult, OrganizationSearchInput, SubmitButton} from "@/components";
+import {UserDto} from "@/core/models";
 
 interface ChangeUserOrgDialogProps {
   user: UserDto;
@@ -30,7 +24,11 @@ export function ChangeUserOrgDialog(props: ChangeUserOrgDialogProps) {
         <form action={formAction}>
           <Stack direction="column" gap={2}>
             <DialogContentText>
-              Select an organization for the user <strong>{props.user.firstName} {props.user.lastName}</strong> to join.
+              Select an organization for the user{" "}
+              <strong>
+                {props.user.firstName} {props.user.lastName}
+              </strong>{" "}
+              to join.
             </DialogContentText>
 
             <AlertResult

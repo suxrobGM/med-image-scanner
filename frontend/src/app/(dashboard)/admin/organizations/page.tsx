@@ -5,7 +5,7 @@ export default function OrganizationsPage() {
   return (
     <Stack gap={3} p={2}>
       <Typography variant="h3">Organizations</Typography>
-      <Button 
+      <Button
         href="/admin/organizations/add"
         variant="contained"
         color="primary"

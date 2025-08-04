@@ -1,13 +1,7 @@
 "use client";
+
 import {useRef, useState} from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  Stack,
-  styled,
-} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, Stack, styled} from "@mui/material";
 import SignatureCanvas from "react-signature-canvas";
 
 interface SignaturePadDialogProps {
@@ -39,7 +33,7 @@ export function SignaturePadDialog(props: SignaturePadDialogProps) {
   const handleCancel = () => {
     clearPad();
     props.onClose?.(null);
-  }
+  };
 
   const handleBegin = () => {
     setPadEmpty(false);

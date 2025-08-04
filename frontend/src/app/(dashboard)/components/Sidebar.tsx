@@ -1,41 +1,41 @@
 "use client";
 
 //@ts-ignore
-import {useSession} from "next-auth/react";
-import {useTranslations} from "next-intl";
 import React, {useState} from "react";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import CorporateFareIcon from "@mui/icons-material/CorporateFare";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import {
+  Avatar,
+  Box,
+  CSSObject,
+  Collapse,
   Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  styled,
-  CSSObject,
-  Theme,
-  Avatar,
-  Box,
   Menu,
   MenuItem,
   Stack,
+  Theme,
   Tooltip,
   Typography,
-  Collapse,
+  styled,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
-import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import CorporateFareIcon from '@mui/icons-material/CorporateFare';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import {useSession} from "next-auth/react";
+import {useTranslations} from "next-intl";
+import {SignOutButton} from "@/components";
+import {UserRoleType} from "@/core/models";
 import {useSidebarStore} from "@/core/stores";
 import {UserUtils} from "@/core/utils";
-import {UserRoleType} from "@/core/models";
-import {SignOutButton} from "@/components";
 
 const drawerWidth = 240;
 
@@ -69,20 +69,22 @@ export const DrawerHeader = styled("div")(({theme}) => ({
   ...theme.mixins.toolbar,
 }));
 
-const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
-}));
+const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(
+  ({theme, open}) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: "nowrap",
+    boxSizing: "border-box",
+    ...(open && {
+      ...openedMixin(theme),
+      "& .MuiDrawer-paper": openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      "& .MuiDrawer-paper": closedMixin(theme),
+    }),
+  })
+);
 
 interface NavItem {
   title: string;
@@ -154,7 +156,7 @@ export function Sidebar() {
       title: "User Profile",
       icon: <AccountBoxIcon />,
       href: "/profile",
-    }
+    },
   ];
 
   const NavList = (props: NavListProps) => {
@@ -193,9 +195,9 @@ export function Sidebar() {
               )}
 
               <ListItemText primary={item.title} sx={{opacity: isExpanded ? 1 : 0}} />
-              {item.children && isExpanded && (
-                open[item.title] ? <ExpandLessIcon /> : <ExpandMoreIcon />
-              )}
+              {item.children &&
+                isExpanded &&
+                (open[item.title] ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
             </ListItemButton>
           </ListItem>
 

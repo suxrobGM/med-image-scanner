@@ -1,17 +1,28 @@
 "use client";
+
 import {useState} from "react";
-import {useTranslations} from "next-intl";
-import {useRouter} from "next/navigation";
-import {Box, Avatar, Button, Card, Grid, Stack, ListItem, ListItemText, Typography, Tab} from "@mui/material";
-import {amber} from "@mui/material/colors";
 import {CalendarMonthOutlined, DescriptionOutlined, SourceOutlined} from "@mui/icons-material";
 import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  Grid,
+  ListItem,
+  ListItemText,
+  Stack,
+  Tab,
+  Typography,
+} from "@mui/material";
+import {amber} from "@mui/material/colors";
 import {ResponsiveLine} from "@nivo/line";
+import {useTranslations} from "next-intl";
+import {useRouter} from "next/navigation";
 import {ImageStyledChip} from "@/components";
-import {PersonShieldIcon, StatIcon, StatusIcon} from "@/components/icons";
 import {ViewCaseTopChart} from "@/components/charts";
-
+import {PersonShieldIcon, StatIcon, StatusIcon} from "@/components/icons";
 
 interface PatientCasePageProps {
   params: {
@@ -344,7 +355,8 @@ export default function PatientCasePage({params}: PatientCasePageProps) {
           p={4}
           pt={4}
           sx={{
-            backgroundImage: "linear-gradient(180deg, rgba(19,84,130,1) 0%, rgba(28,142,123,1) 100%);",
+            backgroundImage:
+              "linear-gradient(180deg, rgba(19,84,130,1) 0%, rgba(28,142,123,1) 100%);",
           }}
         >
           <Stack direction="row" alignItems="center" spacing={3}>
@@ -359,11 +371,17 @@ export default function PatientCasePage({params}: PatientCasePageProps) {
                   fill: amber[800],
                 }}
               />
-              <Typography sx={{color: "white", fontSize: 16, fontWeight: 400}}>MRN #123456</Typography>
+              <Typography sx={{color: "white", fontSize: 16, fontWeight: 400}}>
+                MRN #123456
+              </Typography>
             </Stack>
-            <Typography sx={{color: "white", fontSize: 16, fontWeight: 400}}>{t("common.gender.male")}</Typography>
+            <Typography sx={{color: "white", fontSize: 16, fontWeight: 400}}>
+              {t("common.gender.male")}
+            </Typography>
             <Typography sx={{color: "white", fontSize: 16, fontWeight: 400}}>08.08.1956</Typography>
-            <Typography sx={{color: "white", fontSize: 16, fontWeight: 400}}>65 {t("dashboard.yearsOld")}</Typography>
+            <Typography sx={{color: "white", fontSize: 16, fontWeight: 400}}>
+              65 {t("dashboard.yearsOld")}
+            </Typography>
           </Stack>
         </Box>
       </Box>
@@ -426,7 +444,9 @@ export default function PatientCasePage({params}: PatientCasePageProps) {
                     <Typography variant="caption">NT</Typography>
                   </Avatar>
                   <Typography variant="body2">Dr. Nia Thompson</Typography>
-                  <QuestionAnswerOutlinedIcon sx={{fontSize: 19, borderRadius: 1, p: 0.2, bgcolor: "grey.300"}} />
+                  <QuestionAnswerOutlinedIcon
+                    sx={{fontSize: 19, borderRadius: 1, p: 0.2, bgcolor: "grey.300"}}
+                  />
                 </Stack>
               </Stack>
             </Stack>
@@ -511,9 +531,7 @@ export default function PatientCasePage({params}: PatientCasePageProps) {
         </Box>
         <Box>
           <TabPanel value={t("dashboard.tabImaging")}>
-            <Box>
-              {/* <StudiesTab patientId={params.id} /> */}
-            </Box>
+            <Box>{/* <StudiesTab patientId={params.id} /> */}</Box>
           </TabPanel>
         </Box>
         <Box>
@@ -530,7 +548,12 @@ export default function PatientCasePage({params}: PatientCasePageProps) {
                   },
                 }}
               >
-                <Button size="large" fullWidth variant="contained" endIcon={<DescriptionOutlined />}>
+                <Button
+                  size="large"
+                  fullWidth
+                  variant="contained"
+                  endIcon={<DescriptionOutlined />}
+                >
                   {t("dashboard.addNote")}
                 </Button>
               </Box>

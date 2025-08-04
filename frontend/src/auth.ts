@@ -1,6 +1,5 @@
 //@ts-ignore
 import NextAuth from "next-auth";
-
 //@ts-ignore
 import CredentialsProvider from "next-auth/providers/credentials";
 import {SignInResult} from "@/core/models";
@@ -52,8 +51,7 @@ export const {auth, handlers, signIn, signOut} = NextAuth({
           }
 
           return null;
-        } 
-        catch (error) {
+        } catch (error) {
           console.error(error);
           return null;
         }

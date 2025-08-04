@@ -1,10 +1,11 @@
 "use client";
+
 import {useState} from "react";
 import {TabContext, TabPanel} from "@mui/lab";
 import {Container, Tab, Tabs} from "@mui/material";
 import {UserDto} from "@/core/models";
-import {UserProfileTab} from "./UserProfileTab";
 import {UserPasswordTab} from "./UserPasswordTab";
+import {UserProfileTab} from "./UserProfileTab";
 
 interface UserProfilePanelProps {
   user: UserDto;

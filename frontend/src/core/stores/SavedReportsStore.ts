@@ -8,12 +8,14 @@ interface SavedReportsStore {
 
 export const useSavedReportsStore = create<SavedReportsStore>((set) => ({
   savedReports: new Set(),
-  saveReport: (reportId) => set((state) => {
-    state.savedReports.add(reportId);
-    return state;
-  }),
-  unsaveReport: (reportId) => set((state) => {
-    state.savedReports.delete(reportId);
-    return state;
-  }),
+  saveReport: (reportId) =>
+    set((state) => {
+      state.savedReports.add(reportId);
+      return state;
+    }),
+  unsaveReport: (reportId) =>
+    set((state) => {
+      state.savedReports.delete(reportId);
+      return state;
+    }),
 }));

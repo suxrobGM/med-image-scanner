@@ -2,44 +2,43 @@
 import {Session} from "next-auth";
 import {redirect} from "next/navigation";
 import {auth} from "@/auth";
+import {ApiException} from "@/core/exceptions";
 import {
-  StudyDto,
+  BookmarkReportCommand,
+  CreateOrganizationCommand,
+  DicomWebUrlDto,
   DocumentDto,
+  GetPatientQuery,
+  GetStudiesQuery,
+  GetStudySeriesQuery,
+  InviteToOrgCommand,
+  InviteUserCommand,
+  JoinOrganizationCommand,
+  OrgShortDetailsDto,
+  OrganizationDto,
   PagedQuery,
   PagedResult,
   PatientDto,
-  Result,
-  SearchableQuery,
-  ReportDto,
-  InviteUserCommand,
-  BookmarkReportCommand,
-  OrganizationDto,
-  CreateOrganizationCommand,
-  UpdateOrganizationCommand,
-  UserDto,
+  PredictSeriesCommand,
   RegisterUserCommand,
-  UpdateUserRoleCommand,
-  OrgShortDetailsDto,
-  UserShortDetailsDto,
-  SearchUserQuery,
-  UpdateUserOrgCommand,
-  GetStudiesQuery,
-  GetPatientQuery,
-  SeriesDto,
-  GetStudySeriesQuery,
-  DicomWebUrlDto,
+  ReportDto,
   RequestPasswordRecoveryCommand,
   ResetPasswordCommand,
-  UpdateProfileCommand,
+  Result,
+  SearchUserQuery,
+  SearchableQuery,
+  SeriesDto,
+  StudyDto,
+  UpdateOrganizationCommand,
   UpdatePasswordCommand,
-  InviteToOrgCommand,
-  JoinOrganizationCommand,
-  PredictSeriesCommand,
+  UpdateProfileCommand,
   UpdateReportCommand,
+  UpdateUserOrgCommand,
+  UpdateUserRoleCommand,
+  UserDto,
+  UserShortDetailsDto,
 } from "@/core/models";
-import {ApiException} from "@/core/exceptions";
 import {PaginationUtils} from "@/core/utils";
-
 
 interface RequestOptions {
   /**
@@ -88,7 +87,6 @@ export class ApiService {
     return ApiService.instance;
   }
 
-
   //#region Patient API
 
   /**
@@ -117,7 +115,7 @@ export class ApiService {
    */
   getPatientStudies(
     patientId: string,
-    pagedQueryOptions: PagedQuery,
+    pagedQueryOptions: PagedQuery
   ): Promise<PagedResult<StudyDto>> {
     const params = PaginationUtils.pagedQueryToParams(pagedQueryOptions);
     return this.get(`/patients/${patientId}/studies?${params}`);
@@ -139,7 +137,6 @@ export class ApiService {
 
   //#endregion
 
-
   //#region User API
 
   getUser(userId: string): Promise<Result<UserDto>> {
@@ -152,17 +149,17 @@ export class ApiService {
 
   getUsers(query: SearchUserQuery): Promise<PagedResult<UserDto>> {
     const params = PaginationUtils.searchableQueryToParams(query, {
-      "organizationName": query.organizationName,
-      "organizationId": query.organizationId,
+      organizationName: query.organizationName,
+      organizationId: query.organizationId,
     });
-    
+
     return this.get(`/users?${params}`);
   }
 
   searchUsers(query: SearchUserQuery): Promise<PagedResult<UserShortDetailsDto>> {
     const params = PaginationUtils.pagedQueryToParams(query, {
-      "organizationName": query.organizationName,
-      "organizationId": query.organizationId,
+      organizationName: query.organizationName,
+      organizationId: query.organizationId,
     });
 
     return this.get(`/users/search/${query.search}?${params}`);
@@ -226,7 +223,6 @@ export class ApiService {
 
   //#endregion
 
-
   //#region Report API
 
   /**
@@ -252,7 +248,6 @@ export class ApiService {
   }
 
   //#endregion
-
 
   //#region Organization API
 
@@ -325,7 +320,6 @@ export class ApiService {
 
   //#endregion
 
-
   //#region Study API
 
   /**
@@ -356,7 +350,6 @@ export class ApiService {
   }
 
   //#endregion
-
 
   //#region HTTP Methods
 
@@ -440,9 +433,8 @@ export class ApiService {
 
   //#endregion
 
-
   //#region Utility Methods
-  
+
   /**
    * Get the session object
    * @param options Request options
@@ -503,8 +495,7 @@ export class ApiService {
   private redirectSignOut(): void {
     if (this.isClient()) {
       window.location.href = "/auth/signout";
-    }
-    else {
+    } else {
       redirect("/auth/signout");
     }
   }

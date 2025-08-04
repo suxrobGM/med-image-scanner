@@ -1,21 +1,18 @@
-import {getTranslations} from "next-intl/server";
 import {Box, Grid, Typography} from "@mui/material";
+import {getTranslations} from "next-intl/server";
 import {auth} from "@/auth";
 import {BgCircle} from "@/components";
-import {ApiService} from "@/core/services";
 import {ReportDto} from "@/core/models";
+import {ApiService} from "@/core/services";
 import {ReportCard} from "./components";
-
 
 function getDailyGreeting(t: (key: string) => string): string {
   const currentHour = new Date().getHours();
   if (currentHour < 12) {
     return t("common.greetings.morning");
-  }
-  else if (currentHour < 18) {
+  } else if (currentHour < 18) {
     return t("common.greetings.afternoon");
-  }
-  else {
+  } else {
     return t("common.greetings.evening");
   }
 }

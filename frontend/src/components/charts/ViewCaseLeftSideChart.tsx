@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Box, Typography, ListItem, ListItemText, Checkbox} from "@mui/material";
+import {Box, Checkbox, ListItem, ListItemText, Typography} from "@mui/material";
 import {useTranslations} from "next-intl";
 
 interface LegendItem {
@@ -50,7 +50,11 @@ const ViewCaseChartLeftSide: React.FC = () => {
         {t("dashboard.assessments")}
       </Typography>
       {assessmentsData.map((item, index) => (
-        <ListItem key={item.label} disableGutters sx={{paddingLeft: 0, marginTop: index === 0 ? 8 : 0}}>
+        <ListItem
+          key={item.label}
+          disableGutters
+          sx={{paddingLeft: 0, marginTop: index === 0 ? 8 : 0}}
+        >
           <Checkbox
             sx={{
               color: "#7f56d9",

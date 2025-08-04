@@ -1,4 +1,5 @@
 "use client";
+
 import {PasswordValidator} from "@/components";
 
 interface PasswordStepProps {
@@ -7,8 +8,5 @@ interface PasswordStepProps {
 }
 
 export function PasswordStep(props: PasswordStepProps) {
-  return <PasswordValidator 
-    onValid={props.onValid}
-    onInvalid={props.onInvalid}
-  />;
+  return <PasswordValidator onValid={props.onValid} onInvalid={props.onInvalid} />;
 }

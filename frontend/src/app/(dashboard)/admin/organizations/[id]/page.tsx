@@ -24,19 +24,17 @@ export default async function EditOrganiztionPage({params}: EditOrganizationPage
   return (
     <Container maxWidth="md">
       <Stack direction="column" gap={2} p={3}>
-        <Typography variant="h4" textAlign="center">Edit Organization</Typography>
+        <Typography variant="h4" textAlign="center">
+          Edit Organization
+        </Typography>
 
         <EditOrganizationForm organization={organization} />
 
         <Stack direction="row" gap={2}>
-          <Button 
-            href="/admin/organizations"
-            variant="contained"
-            color="primary"
-          >
+          <Button href="/admin/organizations" variant="contained" color="primary">
             Back
           </Button>
-          <Button 
+          <Button
             href={`/admin/organizations/${organization.id}/users`}
             variant="contained"
             color="primary"

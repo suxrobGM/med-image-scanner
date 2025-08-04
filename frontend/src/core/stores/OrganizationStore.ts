@@ -2,7 +2,7 @@ import {create} from "zustand";
 import {OrganizationDto} from "../models";
 
 interface OrganizationStore {
-  organization: OrganizationDto
+  organization: OrganizationDto;
   setOrganization: (organization: OrganizationDto) => void;
 }
 

@@ -1,26 +1,26 @@
 "use client";
+
 import {useCallback, useEffect, useState} from "react";
-import {useTranslations} from "next-intl";
-import useSWR from "swr";
-import {DataGridPro, DataGridProProps} from "@mui/x-data-grid-pro";
+import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
   Box,
   Card,
   CircularProgress,
   IconButton,
+  Link,
   Menu,
   MenuItem,
   Stack,
   Typography,
-  Link,
 } from "@mui/material";
-import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import {ApiService} from "@/core/services";
-import {StudyDto} from "@/core/models";
+import {DataGridPro, DataGridProProps} from "@mui/x-data-grid-pro";
+import {useTranslations} from "next-intl";
+import useSWR from "swr";
 import {getOhifViewerModes} from "@/components";
+import {StudyDto} from "@/core/models";
+import {ApiService} from "@/core/services";
 import {StudySeriesGrid} from "./StudySeriesGrid";
-
 
 interface StudiesTabProps {
   patientId: string;
@@ -31,31 +31,30 @@ interface StudiesTabProps {
 export function StudiesTab(props: StudiesTabProps) {
   const t = useTranslations();
   const [viewerMenuAnchorEl, setViewerMenuAnchorEl] = useState<HTMLElement | null>(null);
-  
+
   const {data: result, isLoading} = useSWR(`/studies?patientId=${props.patientId}`, () =>
     ApiService.ins.getStudies({patientId: props.patientId, organization: props.organization})
   );
 
-  const getDetailPanelContent = useCallback<NonNullable<DataGridProProps<StudyDto>["getDetailPanelContent"]>>(
-    ({row}) => {
-      return (
-        <Box p={2} height="100%">
-          <StudySeriesGrid studyId={row.studyInstanceUid} organization={props.organization} />
-        </Box>
-      );
-    },
-    []
-  );
+  const getDetailPanelContent = useCallback<
+    NonNullable<DataGridProProps<StudyDto>["getDetailPanelContent"]>
+  >(({row}) => {
+    return (
+      <Box p={2} height="100%">
+        <StudySeriesGrid studyId={row.studyInstanceUid} organization={props.organization} />
+      </Box>
+    );
+  }, []);
 
   const getDetailPanelHeight = useCallback(() => 400, []);
 
   const handleCloseViewerMenu = () => {
     setViewerMenuAnchorEl(null);
-  }
+  };
 
   const handleOpenViewerMenu = (event: React.MouseEvent<HTMLElement>) => {
     setViewerMenuAnchorEl(event.currentTarget);
-  }
+  };
 
   useEffect(() => {
     if (result?.success && result.data) {
@@ -63,7 +62,7 @@ export function StudiesTab(props: StudiesTabProps) {
       props.onDataFetched?.(totalItems, "Studies");
     }
   }, [result, props.onDataFetched]);
-  
+
   if (isLoading) {
     return <CircularProgress />;
   }
@@ -95,7 +94,9 @@ export function StudiesTab(props: StudiesTabProps) {
             renderCell: (params) => (
               <Stack direction="row" spacing={2} alignItems="center">
                 <TodayOutlinedIcon />
-                <Typography variant="body2">{new Date(params.value).toLocaleDateString()}</Typography>
+                <Typography variant="body2">
+                  {new Date(params.value).toLocaleDateString()}
+                </Typography>
               </Stack>
             ),
           },
@@ -137,11 +138,11 @@ export function StudiesTab(props: StudiesTabProps) {
                   onClose={handleCloseViewerMenu}
                 >
                   {getOhifViewerModes(row.modalities).map((viewerMode) => (
-                    <MenuItem
-                      key={viewerMode.mode}
-                      onClick={handleCloseViewerMenu}
-                    >
-                      <Link href={`/viewer/${row.studyInstanceUid}?mode=${viewerMode.mode}`} sx={{textDecoration: "none"}}>
+                    <MenuItem key={viewerMode.mode} onClick={handleCloseViewerMenu}>
+                      <Link
+                        href={`/viewer/${row.studyInstanceUid}?mode=${viewerMode.mode}`}
+                        sx={{textDecoration: "none"}}
+                      >
                         {viewerMode.label}
                       </Link>
                     </MenuItem>

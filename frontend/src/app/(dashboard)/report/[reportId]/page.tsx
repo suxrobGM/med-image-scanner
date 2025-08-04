@@ -1,12 +1,11 @@
-import {Box, Stack, Typography, Grid, Divider, Button} from "@mui/material";
+import {Box, Button, Divider, Grid, Stack, Typography} from "@mui/material";
 import {auth} from "@/auth";
-import {UserDto} from "@/core/models";
+import {Banner, MessageBanner, OhifViewer} from "@/components";
 import {PersonShieldIcon} from "@/components/icons";
+import {UserDto} from "@/core/models";
 import {ApiService} from "@/core/services";
 import {DateUtils} from "@/core/utils";
-import {Banner, MessageBanner, OhifViewer} from "@/components";
 import {BookmarkButton, ReportForm} from "./components";
-
 
 interface ReportPageProps {
   params: {
@@ -17,16 +16,20 @@ interface ReportPageProps {
 export default async function ReportPage({params}: ReportPageProps) {
   const result = await ApiService.ins.getReport(params.reportId);
   const session = await auth();
-  const user = session?.user as UserDto
+  const user = session?.user as UserDto;
 
   if (!user || !user?.id) {
-    return <Typography variant="h4" color="error">Unauthorized</Typography>;
+    return (
+      <Typography variant="h4" color="error">
+        Unauthorized
+      </Typography>
+    );
   }
 
   if (!result.success || !result.data) {
     return <MessageBanner message={result.error!} />;
   }
-  
+
   const report = result.data!;
 
   return (
@@ -36,7 +39,13 @@ export default async function ReportPage({params}: ReportPageProps) {
           <Typography variant="h4" color="InfoBackground">
             {report.patient.name}
           </Typography>
-          <Typography variant="body2" color="InfoBackground" textAlign="center" display="flex" alignItems="center">
+          <Typography
+            variant="body2"
+            color="InfoBackground"
+            textAlign="center"
+            display="flex"
+            alignItems="center"
+          >
             <PersonShieldIcon fill="#FFCB47" /> MRN #{report.patient.mrn}
           </Typography>
           <Typography variant="body2" color="InfoBackground">
@@ -64,7 +73,11 @@ export default async function ReportPage({params}: ReportPageProps) {
             height="800px"
           />
 
-          <Button href={`/viewer/${report.studyInstanceUid}?seriesId=${report.seriesInstanceUid}`} variant="contained" sx={{mt: 2}}>
+          <Button
+            href={`/viewer/${report.studyInstanceUid}?seriesId=${report.seriesInstanceUid}`}
+            variant="contained"
+            sx={{mt: 2}}
+          >
             View in full screen
           </Button>
         </Grid>
@@ -86,7 +99,7 @@ export default async function ReportPage({params}: ReportPageProps) {
             </Typography>
             <BookmarkButton reportId={report.id} userId={user.id} />
           </Stack>
-          
+
           <Typography variant="h5" my={4}>
             Patient Information
           </Typography>
@@ -98,16 +111,15 @@ export default async function ReportPage({params}: ReportPageProps) {
                   <Typography variant="body1" color="GrayText">
                     Patient Name
                   </Typography>
-                  <Typography variant="body1">
-                    {report.patient.name}
-                  </Typography>
+                  <Typography variant="body1">{report.patient.name}</Typography>
                 </Stack>
                 <Stack direction="row" gap={2}>
                   <Typography variant="body1" color="GrayText">
                     Date of Birth
                   </Typography>
                   <Typography variant="body1">
-                    {report.patient.birthDate} ({DateUtils.getAge(report.patient.birthDate)} years old)
+                    {report.patient.birthDate} ({DateUtils.getAge(report.patient.birthDate)} years
+                    old)
                   </Typography>
                 </Stack>
                 <Stack direction="row" gap={2}>

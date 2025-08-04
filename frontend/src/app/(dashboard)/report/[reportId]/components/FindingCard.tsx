@@ -1,8 +1,9 @@
 "use client";
+
 import {useEffect, useState} from "react";
-import {Box, Button, Grid, Stack, TextField, Typography} from "@mui/material";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import BlockIcon from "@mui/icons-material/Block";
+import {Box, Button, Grid, Stack, TextField, Typography} from "@mui/material";
 import {FindingDto} from "@/core/models";
 import {StringUtils} from "@/core/utils";
 
@@ -49,10 +50,18 @@ export function FindingCard(props: FindingCardProps) {
                 Add this finding to your report?
               </Typography>
               <Stack direction="row" gap={1}>
-                <Button color="info" endIcon={<AddTaskIcon />} onClick={() => handleFindingChange("approved", true)}>
+                <Button
+                  color="info"
+                  endIcon={<AddTaskIcon />}
+                  onClick={() => handleFindingChange("approved", true)}
+                >
                   Approve
                 </Button>
-                <Button color="error" endIcon={<BlockIcon />} onClick={() => handleFindingChange("approved", false)}>
+                <Button
+                  color="error"
+                  endIcon={<BlockIcon />}
+                  onClick={() => handleFindingChange("approved", false)}
+                >
                   Decline
                 </Button>
               </Stack>

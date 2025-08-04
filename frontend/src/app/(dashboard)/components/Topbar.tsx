@@ -1,22 +1,15 @@
 "use client";
-import {useRouter} from "next/navigation";
-import {useTranslations} from "next-intl";
-import {
-  IconButton,
-  Box,
-  Toolbar,
-  Badge,
-  Stack,
-  TextField,
-  styled,
-} from "@mui/material";
-import MuiAppBar, {AppBarProps as MuiAppBarProps} from "@mui/material/AppBar";
+
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
+import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
-import {useSidebarStore, useNotificationStore} from "@/core/stores";
+import SearchIcon from "@mui/icons-material/Search";
+import {Badge, Box, IconButton, Stack, TextField, Toolbar, styled} from "@mui/material";
+import MuiAppBar, {AppBarProps as MuiAppBarProps} from "@mui/material/AppBar";
+import {useTranslations} from "next-intl";
+import {useRouter} from "next/navigation";
+import {useNotificationStore, useSidebarStore} from "@/core/stores";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;

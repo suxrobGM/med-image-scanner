@@ -16,7 +16,9 @@ export class IPInfoService {
 
   private constructor() {
     if (!this.token) {
-      throw new Error("IPInfo token not provided, please set NEXT_PUBLIC_IPINFO_TOKEN in your environment variables");
+      throw new Error(
+        "IPInfo token not provided, please set NEXT_PUBLIC_IPINFO_TOKEN in your environment variables"
+      );
     }
   }
 

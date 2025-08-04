@@ -1,14 +1,14 @@
 "use client";
+
 import {ReactNode, useEffect} from "react";
+import {Box, CssBaseline} from "@mui/material";
 //@ts-ignore
 import {SessionProvider, useSession} from "next-auth/react";
 import useSWR from "swr";
-import {Box,CssBaseline} from "@mui/material";
-import {useOrganizationStore} from "@/core/stores";
-import {ApiService} from "@/core/services";
 import {useTheme} from "@/components";
-import {Topbar, DrawerHeader, Sidebar} from "./components";
-
+import {ApiService} from "@/core/services";
+import {useOrganizationStore} from "@/core/stores";
+import {DrawerHeader, Sidebar, Topbar} from "./components";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -51,19 +51,20 @@ function InitOrganizationStore() {
   const {data: session} = useSession();
   const {organization, setOrganization} = useOrganizationStore();
   const userId = session?.user?.id;
-  
+
   // Check if userId exists and organization data is not already initialized
   const shouldFetch = userId && !Object.hasOwn(organization, "id");
 
-  const {data: result} = useSWR(shouldFetch ? "organization" : null, () => ApiService.ins.getUserOrganization(userId!));
-  
+  const {data: result} = useSWR(shouldFetch ? "organization" : null, () =>
+    ApiService.ins.getUserOrganization(userId!)
+  );
+
   // Update the organization store when the data is fetched
   useEffect(() => {
     if (result?.success && result.data) {
       setOrganization(result.data);
       console.log("Initialized organization store", result.data);
-    }
-    else if (result?.error) {
+    } else if (result?.error) {
       console.error("Failed to initialize organization store", result.error);
     }
   }, [result, setOrganization]);

@@ -1,5 +1,6 @@
 "use client";
-import {FormControl, InputLabel, Select, MenuItem} from "@mui/material";
+
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
 interface SelectTimezoneInputProps {
   name?: string;
@@ -118,8 +119,8 @@ export function SelectTimezoneInput(props: SelectTimezoneInputProps) {
     <FormControl fullWidth={props.fullWidth}>
       <InputLabel id={name}>{label}</InputLabel>
       <Select
-        {...(props.value && { value: props.value })}
-        {...(props.onChange && { onChange: (e) => props.onChange?.(e.target.value as string) })}
+        {...(props.value && {value: props.value})}
+        {...(props.onChange && {onChange: (e) => props.onChange?.(e.target.value as string)})}
         name={name}
         variant="outlined"
         defaultValue={defaultValue}

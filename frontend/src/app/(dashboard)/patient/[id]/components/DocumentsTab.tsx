@@ -1,13 +1,14 @@
 "use client";
+
 import {useEffect, useState} from "react";
-import {useTranslations} from "next-intl";
-import {DataGridPro as DataGrid, GridActionsCellItem} from "@mui/x-data-grid-pro";
-import {Box, Card, CircularProgress, Stack, Typography} from "@mui/material";
-import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
 import {CloudDownloadOutlined, DescriptionOutlined} from "@mui/icons-material";
+import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import {ApiService} from "@/core/services";
+import {Box, Card, CircularProgress, Stack, Typography} from "@mui/material";
+import {DataGridPro as DataGrid, GridActionsCellItem} from "@mui/x-data-grid-pro";
+import {useTranslations} from "next-intl";
 import {useSWRPagination} from "@/core/hooks";
+import {ApiService} from "@/core/services";
 
 interface DocumentsTabProps {
   patientId: string;
@@ -19,9 +20,9 @@ export function DocumentsTab(props: DocumentsTabProps) {
   const [paginationModel, setPaginationModel] = useState({page: 0, pageSize: 10, zeroBased: true});
 
   const {data: result, isLoading} = useSWRPagination(
-    `/patients/${props.patientId}/documents`, 
-    paginationModel, 
-    (pageModel) => ApiService.ins.getPatientDocuments(props.patientId, pageModel),
+    `/patients/${props.patientId}/documents`,
+    paginationModel,
+    (pageModel) => ApiService.ins.getPatientDocuments(props.patientId, pageModel)
   );
 
   const rowCount = (result?.pagesCount ?? 0) * paginationModel.pageSize; // total items
@@ -72,7 +73,9 @@ export function DocumentsTab(props: DocumentsTabProps) {
             renderCell: (params) => (
               <Stack direction="row" spacing={1} alignItems="center">
                 <TodayOutlinedIcon />
-                <Typography variant="body2">{new Date(params.value).toLocaleDateString()}</Typography>
+                <Typography variant="body2">
+                  {new Date(params.value).toLocaleDateString()}
+                </Typography>
               </Stack>
             ),
           },

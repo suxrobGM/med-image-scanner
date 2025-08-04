@@ -1,24 +1,24 @@
 "use client";
+
 import {ReactElement, useState} from "react";
-import {mutate} from "swr";
-import {useSnackbar} from "notistack";
+import CorporateFareIcon from "@mui/icons-material/CorporateFare";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SecurityIcon from "@mui/icons-material/Security";
+import {Box, Tooltip} from "@mui/material";
 import {
   DataGridPro,
   GridActionsCellItem,
   GridActionsCellItemProps,
   GridColDef,
 } from "@mui/x-data-grid-pro";
-import {Box, Tooltip} from "@mui/material";
-import SecurityIcon from "@mui/icons-material/Security";
-import CorporateFareIcon from "@mui/icons-material/CorporateFare";
-import DeleteIcon from "@mui/icons-material/Delete";
-import {ApiService} from "@/core/services";
+import {useSnackbar} from "notistack";
+import {mutate} from "swr";
+import {useConfirmDialog} from "@/components";
 import {useSWRPagination} from "@/core/hooks";
 import {UserDto, UserRoleType} from "@/core/models";
-import {useConfirmDialog} from "@/components";
-import {ChangeUserRoleDialog} from "./ChangeUserRoleDialog";
+import {ApiService} from "@/core/services";
 import {ChangeUserOrgDialog} from "./ChangeUserOrgDialog";
-
+import {ChangeUserRoleDialog} from "./ChangeUserRoleDialog";
 
 interface UsersGridProps {
   /**
@@ -33,7 +33,7 @@ interface UsersGridProps {
   organization?: {
     id?: string;
     name?: string;
-  }
+  };
 
   /**
    * Height of the grid. The default is 600px.
@@ -49,11 +49,11 @@ export function UsersGrid(props: UsersGridProps) {
   const {confirm} = useConfirmDialog();
   const {enqueueSnackbar} = useSnackbar();
   const height = props.height ?? "600px";
-  
+
   const {
     data: result,
     isLoading,
-    key: fetchUsersKey
+    key: fetchUsersKey,
   } = useSWRPagination("users", paginationModel, (pageModel) =>
     ApiService.ins.getUsers({
       ...pageModel,
@@ -71,37 +71,41 @@ export function UsersGrid(props: UsersGridProps) {
   const openChangeUserRoleDialog = (user: UserDto) => {
     setSelectedUser(user);
     setOpenChangeRoleDialog(true);
-  }
+  };
 
   const closeChangeUserRoleDialog = () => {
     setOpenChangeRoleDialog(false);
     setSelectedUser(null);
     mutate(fetchUsersKey);
-  }
+  };
 
   const openChangeUserOrgDialog = (user: UserDto) => {
     setSelectedUser(user);
     setOpenChangeOrgDialog(true);
-  }
+  };
 
   const closeChangeUserOrgDialog = () => {
     setOpenChangeOrgDialog(false);
     setSelectedUser(null);
     mutate(fetchUsersKey);
-  }
+  };
 
   const removeUserFromOrganization = async (userId: string) => {
-    const result = await ApiService.ins.updateUserOrganization({userId: userId, organization: null});
+    const result = await ApiService.ins.updateUserOrganization({
+      userId: userId,
+      organization: null,
+    });
 
     if (result.success) {
       enqueueSnackbar("User removed from organization successfully", {variant: "success"});
       setSelectedUser(null);
       mutate(fetchUsersKey);
+    } else {
+      enqueueSnackbar(`Failed to remove user from organization, ${result.error}`, {
+        variant: "error",
+      });
     }
-    else {
-      enqueueSnackbar(`Failed to remove user from organization, ${result.error}`, {variant: "error"});
-    }
-  }
+  };
 
   const showConfirmRemoveUserFromOrg = (user: UserDto) => () => {
     confirm({
@@ -109,7 +113,7 @@ export function UsersGrid(props: UsersGridProps) {
       message: `Are you sure you want to remove user '${user.firstName} ${user.lastName}' from the organization?`,
       onConfirm: () => removeUserFromOrganization(user.id),
     });
-  }
+  };
 
   const columns: GridColDef<UserDto>[] = [
     {
@@ -132,7 +136,7 @@ export function UsersGrid(props: UsersGridProps) {
       headerName: "Role",
       flex: 1,
     },
-  ]
+  ];
 
   if (!props.showOnlyOrgUsers) {
     columns.push({
@@ -161,7 +165,7 @@ export function UsersGrid(props: UsersGridProps) {
           )}
         </>
       )}
-      
+
       <DataGridPro
         pageSizeOptions={[10, 50, 100]}
         loading={isLoading}
@@ -187,7 +191,7 @@ export function UsersGrid(props: UsersGridProps) {
               }
 
               actions.push(
-                <Tooltip key="changeRole" title="Change Role" arrow >
+                <Tooltip key="changeRole" title="Change Role" arrow>
                   <GridActionsCellItem
                     icon={<SecurityIcon />}
                     label="Change Role"
@@ -222,7 +226,7 @@ export function UsersGrid(props: UsersGridProps) {
               }
               return actions;
             },
-          }
+          },
         ]}
       />
     </Box>

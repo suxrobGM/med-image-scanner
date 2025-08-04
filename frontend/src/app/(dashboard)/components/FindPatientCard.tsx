@@ -1,8 +1,9 @@
 "use client";
-import {useRouter} from "next/navigation";
-import {useTranslations} from "next-intl";
+
 import {PersonSearchOutlined, SearchOutlined} from "@mui/icons-material";
-import {Stack, Box, TextField, Typography} from "@mui/material";
+import {Box, Stack, TextField, Typography} from "@mui/material";
+import {useTranslations} from "next-intl";
+import {useRouter} from "next/navigation";
 import {DashboardCard} from "./DashboardCard";
 
 export function FindPatientCard() {
@@ -11,7 +12,12 @@ export function FindPatientCard() {
 
   return (
     <DashboardCard>
-      <Stack direction="column" justifyContent="space-between" alignItems="stretch" sx={{height: "100%"}}>
+      <Stack
+        direction="column"
+        justifyContent="space-between"
+        alignItems="stretch"
+        sx={{height: "100%"}}
+      >
         <Box>
           <Stack spacing={1} direction="row" alignItems="center" mb={2}>
             <PersonSearchOutlined sx={{color: "white"}} />
@@ -22,7 +28,11 @@ export function FindPatientCard() {
               {t("dashboard.findAPatient")}
             </Typography>
           </Stack>
-          <Typography variant="body1" fontSize={18} sx={{color: "white", textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)"}}>
+          <Typography
+            variant="body1"
+            fontSize={18}
+            sx={{color: "white", textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)"}}
+          >
             {t("dashboard.findAPatientDesc", {
               // apos: '&apos;',
               // interpolation: { escapeValue: false },

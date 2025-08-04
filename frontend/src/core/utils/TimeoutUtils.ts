@@ -10,7 +10,7 @@ type Procedure = (...args: any[]) => void;
 export function debounce<T extends Procedure>(func: T, timeout: number, immediate = false): T {
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  const debouncedFunction = function(this: ThisParameterType<T>, ...args: Parameters<T>) {
+  const debouncedFunction = function (this: ThisParameterType<T>, ...args: Parameters<T>) {
     const context = this;
 
     const doLater = () => {

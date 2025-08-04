@@ -1,7 +1,8 @@
 "use client";
-import {createContext, ReactNode, useContext, useState} from "react";
+
+import {ReactNode, createContext, useContext, useState} from "react";
 import {ThemeProvider as MuiThemeProvider} from "@mui/material/styles";
-import {lightTheme, darkTheme} from "@/themes";
+import {darkTheme, lightTheme} from "@/themes";
 
 interface ThemeContextType {
   currentTheme: "light" | "dark";
@@ -21,9 +22,7 @@ export function ThemeProvider({children}: {children: ReactNode}) {
 
   return (
     <ThemeContext.Provider value={{currentTheme, setCurrentTheme}}>
-      <MuiThemeProvider theme={theme}>
-        {children}
-      </MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </ThemeContext.Provider>
   );
 }

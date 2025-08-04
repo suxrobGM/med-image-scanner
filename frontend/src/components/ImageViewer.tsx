@@ -1,11 +1,11 @@
 "use client";
-import {useEffect, useState} from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import {TransformWrapper, TransformComponent, ReactZoomPanPinchRef} from "react-zoom-pan-pinch";
-import {Box, IconButton, Stack, Typography} from "@mui/material";
-import {ArrowLeft, ArrowRight} from "@mui/icons-material";
-import {debounce} from "@/core/utils";
 
+import {useEffect, useState} from "react";
+import {ArrowLeft, ArrowRight} from "@mui/icons-material";
+import {Box, IconButton, Stack, Typography} from "@mui/material";
+import useEmblaCarousel from "embla-carousel-react";
+import {ReactZoomPanPinchRef, TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
+import {debounce} from "@/core/utils";
 
 interface ImageViewerProps {
   width?: string;

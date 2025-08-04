@@ -1,9 +1,9 @@
 "use client";
+
 import {ArrowForwardRounded} from "@mui/icons-material";
 import {Button} from "@mui/material";
-import {AccountDetails} from "@/core/models";
 import {signInUserAction} from "@/app/auth/actions";
-
+import {AccountDetails} from "@/core/models";
 
 export function LetsGoButton() {
   const handleSignIn = async () => {
@@ -15,13 +15,13 @@ export function LetsGoButton() {
 
     const account = JSON.parse(accountJson) as AccountDetails;
     console.log("account", account);
-    
+
     const formData = new FormData();
     formData.append("email", account.email);
     formData.append("password", account.password);
     await signInUserAction({success: false}, formData);
     sessionStorage.removeItem("account"); // Remove account details from session storage after sign in
-  }
+  };
 
   return (
     <Button

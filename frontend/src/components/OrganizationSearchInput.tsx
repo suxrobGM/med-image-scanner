@@ -1,10 +1,11 @@
 "use client";
+
 import {useEffect, useMemo, useState} from "react";
 import {Autocomplete, TextField} from "@mui/material";
 import CircularProgressIcon from "@mui/material/CircularProgress";
 import {OrgShortDetailsDto, PagedResult} from "@/core/models";
-import {debounce} from "@/core/utils";
 import {ApiService} from "@/core/services";
+import {debounce} from "@/core/utils";
 
 interface OrganizationSearchInputProps {
   value?: OrgShortDetailsDto | null;
@@ -35,7 +36,6 @@ export function OrganizationSearchInput(props: OrganizationSearchInputProps) {
       new Promise<PagedResult<OrgShortDetailsDto>>((resolve) => debouncedFetch(search, resolve));
   }, []);
 
-
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -55,12 +55,11 @@ export function OrganizationSearchInput(props: OrganizationSearchInputProps) {
         if (signal.aborted) {
           return;
         }
-        
+
         if (result.success && result.data) {
           setOptions(result.data);
         }
-      }
-      finally {
+      } finally {
         if (!signal.aborted) {
           setLoading(false);
         }

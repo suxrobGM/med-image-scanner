@@ -1,5 +1,6 @@
 "use client";
-import {FormControl, InputLabel, Select, MenuItem} from "@mui/material";
+
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
 interface SelectCountryInputProps {
   name?: string;
@@ -2300,8 +2301,8 @@ export function SelectCountryInput(props: SelectCountryInputProps) {
     <FormControl fullWidth={props.fullWidth} required={props.required}>
       <InputLabel id={name}>{label}</InputLabel>
       <Select
-        {...(props.value && { value: props.value })}
-        {...(props.onChange && { onChange: (e) => props.onChange?.(e.target.value as string) })}
+        {...(props.value && {value: props.value})}
+        {...(props.onChange && {onChange: (e) => props.onChange?.(e.target.value as string)})}
         name={name}
         variant="outlined"
         defaultValue={defaultValue}

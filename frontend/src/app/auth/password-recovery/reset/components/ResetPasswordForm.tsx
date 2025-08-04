@@ -1,10 +1,10 @@
 "use client";
+
 import {useState} from "react";
-import {useFormState, useFormStatus} from "react-dom";
 import {Button, Stack, Typography} from "@mui/material";
+import {useFormState, useFormStatus} from "react-dom";
 import {resetPasswordAction} from "@/app/auth/actions";
 import {AlertResult, PasswordValidator} from "@/components";
-
 
 interface ResetPasswordFormProps {
   token: string;

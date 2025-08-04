@@ -1,4 +1,5 @@
 "use server";
+
 //@ts-ignore
 import {AuthError} from "next-auth";
 import {redirect} from "next/navigation";
@@ -21,15 +22,14 @@ export async function signInUserAction(prevState: Result | null, data: FormData)
     });
 
     return {success: true};
-  }
-  catch (error) {
+  } catch (error) {
     if (error instanceof AuthError) {
       return {
         success: false,
-        error: "Failed to sign in, email or password is incorrect."
+        error: "Failed to sign in, email or password is incorrect.",
       };
     }
-    
+
     throw error;
   }
 }
@@ -50,7 +50,10 @@ export async function registerUserAction(command: RegisterUserCommand): Promise<
   return ApiService.ins.registerUser(command);
 }
 
-export async function resetPasswordAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function resetPasswordAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const token = data.get("token") as string;
   const password = data.get("password") as string;
   const result = await ApiService.ins.resetPassword({token, password});
@@ -62,14 +65,20 @@ export async function resetPasswordAction(prevState: Result | null, data: FormDa
   return result;
 }
 
-export async function requestPasswordRecoveryAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function requestPasswordRecoveryAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const email = data.get("email") as string;
   return ApiService.ins.requestPasswordRecovery({email});
 }
 
-export async function joinOrganizationAction(prevState: Result | null, data: FormData): Promise<Result> {
+export async function joinOrganizationAction(
+  prevState: Result | null,
+  data: FormData
+): Promise<Result> {
   const token = data.get("token") as string;
-  
+
   const result = await ApiService.ins.joinOrganization({token});
 
   if (result.success) {

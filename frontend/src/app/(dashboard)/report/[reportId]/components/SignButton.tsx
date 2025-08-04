@@ -1,7 +1,8 @@
 "use client";
+
 import {useState} from "react";
-import {Box, Button} from "@mui/material";
 import DrawIcon from "@mui/icons-material/Draw";
+import {Box, Button} from "@mui/material";
 import {SignaturePadDialog} from "@/components";
 
 interface SignButtonProps {
@@ -21,7 +22,7 @@ export function SignButton(props: SignButtonProps) {
     if (dataUrl) {
       props.onSign?.(dataUrl);
     }
-  }
+  };
 
   return (
     <Box>

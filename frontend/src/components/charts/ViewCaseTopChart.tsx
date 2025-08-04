@@ -1,5 +1,5 @@
 import {useTranslations} from "next-intl";
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, LabelList} from "recharts";
+import {Bar, BarChart, CartesianGrid, LabelList, Legend, XAxis, YAxis} from "recharts";
 
 function getColorFromData(type: number) {
   if (type === 1) {
@@ -132,7 +132,14 @@ export default function ViewCaseTopChart() {
       <XAxis dataKey="name" />
       <YAxis hide={true} />
       <Legend />
-      <Bar dataKey="value" fill="none" stroke="black" barSize={0.1} strokeDasharray="7 7" strokeWidth={0.3}>
+      <Bar
+        dataKey="value"
+        fill="none"
+        stroke="black"
+        barSize={0.1}
+        strokeDasharray="7 7"
+        strokeWidth={0.3}
+      >
         <LabelList dataKey="name" content={(params) => renderCustomizedLabel({...params, data})} />
       </Bar>
     </BarChart>

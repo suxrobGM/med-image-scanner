@@ -1,5 +1,6 @@
 "use client";
-import {createContext, ReactNode, useContext, useState} from "react";
+
+import {ReactNode, createContext, useContext, useState} from "react";
 import {ConfirmDialog, ConfirmDialogProps} from "./ConfirmDialog";
 
 type ConfirmProps = Omit<ConfirmDialogProps, "open">;
@@ -40,11 +41,7 @@ export function ConfirmDialogProvider({children}: {children: ReactNode}) {
   return (
     <ConfirmDialogContext.Provider value={{confirm}}>
       {children}
-      <ConfirmDialog
-        {...dialogState}
-        onConfirm={handleConfirm}
-        onCancel={handleCancel}
-      />
+      <ConfirmDialog {...dialogState} onConfirm={handleConfirm} onCancel={handleCancel} />
     </ConfirmDialogContext.Provider>
   );
 }

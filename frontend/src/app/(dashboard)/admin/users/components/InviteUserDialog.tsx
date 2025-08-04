@@ -1,8 +1,6 @@
 "use client";
+
 import {useState} from "react";
-import {useFormState, useFormStatus} from "react-dom";
-//@ts-ignore
-import {useSession} from "next-auth/react";
 import {
   Box,
   Button,
@@ -16,11 +14,13 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
+//@ts-ignore
+import {useSession} from "next-auth/react";
+import {useFormState, useFormStatus} from "react-dom";
+import {inviteUserAction} from "@/app/(dashboard)/admin/actions";
 import {AlertResult, OrganizationSearchInput} from "@/components";
 import {UserRoleType} from "@/core/models";
 import {UserUtils} from "@/core/utils";
-import {inviteUserAction} from "@/app/(dashboard)/admin/actions";
-
 
 interface InviteUserDialogProps {
   /**
@@ -37,7 +37,7 @@ export function InviteUserDialog(props: InviteUserDialogProps) {
   const {pending} = useFormStatus();
   const [organizationName, setOrganizationName] = useState<string>("");
   const currentUserRole = session?.user?.role;
-  
+
   return (
     <Box>
       <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
@@ -73,18 +73,30 @@ export function InviteUserDialog(props: InviteUserDialogProps) {
               </FormControl>
 
               {props.organization && (
-                <TextField name="organization" label="Organization" value={props.organization} fullWidth disabled />
+                <TextField
+                  name="organization"
+                  label="Organization"
+                  value={props.organization}
+                  fullWidth
+                  disabled
+                />
               )}
               {!props.organization && (
                 <>
                   <input type="hidden" name="organization" defaultValue={organizationName} />
-                  <OrganizationSearchInput onChange={(value) => setOrganizationName(value?.name ?? "")} />
+                  <OrganizationSearchInput
+                    onChange={(value) => setOrganizationName(value?.name ?? "")}
+                  />
                 </>
               )}
 
               <Stack direction="row" gap={2}>
-                <Button onClick={() => setOpen(false)} disabled={pending}>Close</Button>
-                <Button type="submit" disabled={pending}>Send invitation</Button>
+                <Button onClick={() => setOpen(false)} disabled={pending}>
+                  Close
+                </Button>
+                <Button type="submit" disabled={pending}>
+                  Send invitation
+                </Button>
               </Stack>
             </Stack>
           </form>

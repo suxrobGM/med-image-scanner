@@ -1,6 +1,7 @@
 "use client";
-import {createTheme, ThemeOptions} from "@mui/material/styles";
+
 import {red} from "@mui/material/colors";
+import {ThemeOptions, createTheme} from "@mui/material/styles";
 import {LinkBehaviour} from "@/components";
 
 declare module "@mui/material/styles" {
@@ -12,7 +13,6 @@ declare module "@mui/material/styles" {
     TealText?: string;
   }
 }
-
 
 declare module "@mui/material/Typography" {
   interface TypographyPropsColorOverrides {
@@ -44,7 +44,6 @@ const baseTheme: ThemeOptions = {
     },
   },
 };
-
 
 export const darkTheme = createTheme({
   ...baseTheme,

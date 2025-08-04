@@ -1,22 +1,23 @@
 "use client";
+
 import {useState} from "react";
-import {useTranslations} from "next-intl";
+import {ChevronRight, Close, NotificationsNoneOutlined} from "@mui/icons-material";
+import {TabContext, TabList, TabPanel} from "@mui/lab";
 import {
   Box,
   Button,
   Divider,
   Drawer,
   IconButton,
-  Stack,
-  Typography,
-  ListItem,
   List,
-  useTheme,
+  ListItem,
+  Stack,
   Tab,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import {ChevronRight, Close, NotificationsNoneOutlined} from "@mui/icons-material";
-import {TabContext, TabList, TabPanel} from "@mui/lab";
 import {blue} from "@mui/material/colors";
+import {useTranslations} from "next-intl";
 import {useNotificationStore} from "@/core/stores";
 import AiMagicIcon from "./icons/AiMagicIcon";
 
@@ -55,7 +56,9 @@ function NewFeatureComponent() {
           {t("components.notificationsSideBar.newFeatureAlert")}
         </Typography>
       </Stack>
-      <Typography variant="body2">{t("components.notificationsSideBar.newEnhancementsIntroducing")}</Typography>
+      <Typography variant="body2">
+        {t("components.notificationsSideBar.newEnhancementsIntroducing")}
+      </Typography>
       <Button variant="text" color="primary" endIcon={<ChevronRight />}>
         {t("components.notificationsSideBar.learnMore")}
       </Button>
@@ -83,12 +86,19 @@ export default function NotificationsSidebar() {
   };
 
   return (
-    <Drawer anchor="right" open={open} onClose={handleOnClose} sx={{zIndex: theme.zIndex.drawer + 10}}>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={handleOnClose}
+      sx={{zIndex: theme.zIndex.drawer + 10}}
+    >
       <Box width={360}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1} p={2}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <NotificationsNoneOutlined color="primary" />
-            <Typography variant="h6">{t("components.notificationsSideBar.notifications")}</Typography>
+            <Typography variant="h6">
+              {t("components.notificationsSideBar.notifications")}
+            </Typography>
           </Stack>
           <IconButton onClick={handleOnClose}>
             <Close />

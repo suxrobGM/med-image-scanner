@@ -1,5 +1,5 @@
-import {SubmitButton} from "@/components";
 import {signOutUserAction} from "@/app/auth/actions";
+import {SubmitButton} from "@/components";
 
 export default async function SignOutPage() {
   return (

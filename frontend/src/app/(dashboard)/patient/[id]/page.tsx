@@ -1,11 +1,11 @@
-import {getTranslations} from "next-intl/server";
 import {Box, Stack, Typography} from "@mui/material";
 import {amber} from "@mui/material/colors";
+import {getTranslations} from "next-intl/server";
 import {auth} from "@/auth";
-import {ApiService} from "@/core/services";
-import {DateUtils, UserUtils} from "@/core/utils";
 import {Banner, MessageBanner} from "@/components";
 import {PersonShieldIcon} from "@/components/icons";
+import {ApiService} from "@/core/services";
+import {DateUtils, UserUtils} from "@/core/utils";
 import {PatientTabContent} from "./components";
 
 interface PatientPageProps {
@@ -25,10 +25,17 @@ export default async function PatientPage({params}: PatientPageProps) {
   const organizationName = session.user?.organization;
 
   if (!organizationName) {
-    return <Typography variant="h4">You need to be a member of an organization to view this page</Typography>;
+    return (
+      <Typography variant="h4">
+        You need to be a member of an organization to view this page
+      </Typography>
+    );
   }
 
-  const result = await ApiService.ins.getPatient({patientId: params.id, organization: organizationName});
+  const result = await ApiService.ins.getPatient({
+    patientId: params.id,
+    organization: organizationName,
+  });
 
   if (!result.success) {
     console.error(result.error);

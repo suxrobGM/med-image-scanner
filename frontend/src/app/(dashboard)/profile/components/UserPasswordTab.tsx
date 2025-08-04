@@ -1,9 +1,10 @@
 "use client";
-import {useFormState} from "react-dom";
+
 import {Stack, Typography} from "@mui/material";
-import {UserDto} from "@/core/models";
+import {useFormState} from "react-dom";
 import {updatePasswordAction} from "@/app/(dashboard)/profile/actions";
 import {AlertResult, PasswordInput, PasswordValidator, SubmitButton} from "@/components";
+import {UserDto} from "@/core/models";
 
 interface UserPasswordTabProps {
   user: UserDto;
@@ -11,7 +12,7 @@ interface UserPasswordTabProps {
 
 export function UserPasswordTab({user}: UserPasswordTabProps) {
   const [formState, formAction] = useFormState(updatePasswordAction, null);
-  
+
   return (
     <form action={formAction}>
       <Stack direction="column" gap={3}>
@@ -27,10 +28,7 @@ export function UserPasswordTab({user}: UserPasswordTabProps) {
         <PasswordInput name="oldPassword" label="Current Password" required />
         <PasswordValidator name="newPassword" required />
 
-        <SubmitButton 
-          variant="contained"
-          sx={{alignSelf: "flex-start"}}
-        >
+        <SubmitButton variant="contained" sx={{alignSelf: "flex-start"}}>
           Update Password
         </SubmitButton>
       </Stack>

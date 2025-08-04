@@ -1,25 +1,17 @@
 "use client";
-import {useTranslations} from "next-intl";
+
 import {useEffect, useState} from "react";
-import useSWR from "swr";
-import {
-  CircularProgress,
-  Box,
-  Stack,
-  Typography,
-  Button,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
-import {DataGridPro} from "@mui/x-data-grid-pro";
-import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import ErrorIcon from "@mui/icons-material/Error";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
+import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import {Box, Button, CircularProgress, IconButton, Stack, Tooltip, Typography} from "@mui/material";
+import {DataGridPro} from "@mui/x-data-grid-pro";
+import {useTranslations} from "next-intl";
+import useSWR from "swr";
+import AiMagicIcon from "@/components/icons/AiMagicIcon";
 import {MLModelType, PredictionStatus} from "@/core/models";
 import {ApiService} from "@/core/services";
-import AiMagicIcon from "@/components/icons/AiMagicIcon";
-
 
 interface StudySeriesGridProps {
   studyId: string;
@@ -29,14 +21,21 @@ interface StudySeriesGridProps {
 export function StudySeriesGrid(props: StudySeriesGridProps) {
   const t = useTranslations();
   const [inProgressSeries, setInProgressSeries] = useState<Record<string, boolean>>({});
-  
-  const {data: result, isLoading, mutate} = useSWR(`/studies/${props.studyId}/series`, () =>
+
+  const {
+    data: result,
+    isLoading,
+    mutate,
+  } = useSWR(`/studies/${props.studyId}/series`, () =>
     ApiService.ins.getStudySeries({studyId: props.studyId, organization: props.organization})
   );
 
   // Check if there are any series with IN_PROGRESS status
   const hasAnyInProgress = () => {
-    return Object.keys(inProgressSeries).length > 0 || result?.data?.some((row) => row.predictionStatus === PredictionStatus.IN_PROGRESS);
+    return (
+      Object.keys(inProgressSeries).length > 0 ||
+      result?.data?.some((row) => row.predictionStatus === PredictionStatus.IN_PROGRESS)
+    );
   };
 
   // Refresh the data every 10 seconds if there are series in progress
@@ -71,15 +70,19 @@ export function StudySeriesGrid(props: StudySeriesGridProps) {
       modelType: MLModelType.CHEST_XRAY_CLASSIFICATION,
     });
   };
-  
+
   if (isLoading) {
     return <CircularProgress />;
   }
 
   if (!result?.data || !result.success) {
-    return <Typography variant="body1" color="error">{result?.error}</Typography>;
+    return (
+      <Typography variant="body1" color="error">
+        {result?.error}
+      </Typography>
+    );
   }
-  
+
   return (
     <DataGridPro
       getRowId={(row) => row.seriesInstanceUid}
@@ -130,8 +133,7 @@ export function StudySeriesGrid(props: StudySeriesGridProps) {
                   {t("components.imagingTable.viewReport")}
                 </Button>
               );
-            }
-            else if (row.predictionStatus === PredictionStatus.NOT_SUPPORTED) {
+            } else if (row.predictionStatus === PredictionStatus.NOT_SUPPORTED) {
               return (
                 <Tooltip title="This imaging modality is not supported currently" arrow>
                   <IconButton onClick={() => handleScan(row.seriesInstanceUid)}>
@@ -139,26 +141,33 @@ export function StudySeriesGrid(props: StudySeriesGridProps) {
                   </IconButton>
                 </Tooltip>
               );
-            }
-            else if (row.predictionStatus === PredictionStatus.FAILED) {
+            } else if (row.predictionStatus === PredictionStatus.FAILED) {
               return (
-                <Tooltip title="An error occurred while processing this series, please try again later" arrow>
+                <Tooltip
+                  title="An error occurred while processing this series, please try again later"
+                  arrow
+                >
                   <IconButton onClick={() => handleScan(row.seriesInstanceUid)}>
                     <ErrorIcon color="error" />
                   </IconButton>
                 </Tooltip>
               );
-            }
-            else if (inProgressSeries[row.seriesInstanceUid] || row.predictionStatus === PredictionStatus.IN_PROGRESS) {
+            } else if (
+              inProgressSeries[row.seriesInstanceUid] ||
+              row.predictionStatus === PredictionStatus.IN_PROGRESS
+            ) {
               return (
                 <Tooltip title="Processing, it may take few minutes" arrow>
                   <CircularProgress color="primary" />
                 </Tooltip>
               );
             }
-            
+
             return (
-              <Button endIcon={<AiMagicIcon color="primary" />} onClick={() => handleScan(row.seriesInstanceUid)}>
+              <Button
+                endIcon={<AiMagicIcon color="primary" />}
+                onClick={() => handleScan(row.seriesInstanceUid)}
+              >
                 Scan
               </Button>
             );

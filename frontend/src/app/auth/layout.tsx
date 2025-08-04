@@ -1,7 +1,8 @@
 "use client";
+
 import {ReactNode, useEffect} from "react";
-import {usePathname} from "next/navigation";
 import {Box, Grid, Stack} from "@mui/material";
+import {usePathname} from "next/navigation";
 import {useTheme} from "@/components";
 
 interface SignUpLayoutProps {
@@ -16,14 +17,10 @@ function SignUpSuccessLayout({children}: SignUpLayoutProps) {
       sx={{
         backgroundImage: 'url("/img/confetti.png")',
         backgroundRepeat: "round",
-        backgroundSize: "cover"
+        backgroundSize: "cover",
       }}
     >
-      <Box
-        width="50%"
-        padding={4}
-        sx={{backgroundColor: "#FFFFFFEB"}}
-      >
+      <Box width="50%" padding={4} sx={{backgroundColor: "#FFFFFFEB"}}>
         <Box display="flex" justifyContent="center" alignItems="center" height="100%">
           {children}
         </Box>
@@ -37,7 +34,7 @@ export default function AuthPagesLayout({children}: SignUpLayoutProps) {
   const {setCurrentTheme} = useTheme();
 
   useEffect(() => setCurrentTheme("light"), []);
-  
+
   if (pathname === "/auth/signup/success") {
     return <SignUpSuccessLayout children={children} />;
   }

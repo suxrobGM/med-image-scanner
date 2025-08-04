@@ -1,4 +1,5 @@
 "use client";
+
 import {Chip, styled} from "@mui/material";
 
 interface StyledChipProps {

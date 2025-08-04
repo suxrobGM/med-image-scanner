@@ -1,16 +1,12 @@
+import "./global.css";
 import {ReactNode} from "react";
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
-import {NextIntlClientProvider} from "next-intl";
-import {getLocale, getMessages} from "next-intl/server";
 import {CssBaseline} from "@mui/material";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import {
-  ConfirmDialogProvider,
-  MuiXLicense,
-  ThemeProvider,
-  SnackbarProvider,
-} from "@/components";
+import type {Metadata} from "next";
+import {NextIntlClientProvider} from "next-intl";
+import {getLocale, getMessages} from "next-intl/server";
+import {Inter} from "next/font/google";
+import {ConfirmDialogProvider, MuiXLicense, SnackbarProvider, ThemeProvider} from "@/components";
 
 interface RootLayoutProps {
   children: ReactNode;

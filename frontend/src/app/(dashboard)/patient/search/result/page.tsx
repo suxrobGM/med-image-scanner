@@ -1,7 +1,7 @@
 import {Box, Grid, Stack, Typography} from "@mui/material";
+import {LinkPagination} from "@/components";
 import {PatientDto} from "@/core/models";
 import {ApiService} from "@/core/services";
-import {LinkPagination} from "@/components";
 import {PatientCard} from "./components";
 
 interface SearchPatientResultProps {

@@ -2,14 +2,19 @@
  * Hook functions for DOM manipulation.
  */
 "use client";
+
 import {RefObject, useEffect, useRef} from "react";
+
+/**
+ * Hook functions for DOM manipulation.
+ */
 
 /**
  * Hook to scroll to the bottom of a container when the user reaches the bottom.
  * This hook is useful for terms and conditions, chat, and other components that require scrolling to the bottom.
  * ```
  * const contentRef = useScrollToBottom(() => console.log("Scrolled to the bottom"));
- * 
+ *
  * return (
  *  <div ref={contentRef} style={{overflowY: "scroll", maxHeight: "500px"}}>
  *   {children}
@@ -24,7 +29,7 @@ export function useScrollToBottom(onScrollBottom: () => void): RefObject<HTMLDiv
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Timeout to prevent multiple calls to onScrollBottom when the user reaches the bottom and avoids re-rendering the component
-  const debounceTimeout = useRef<number | null>(null); 
+  const debounceTimeout = useRef<number | null>(null);
 
   const handleScroll = () => {
     if (!contentRef.current) {
