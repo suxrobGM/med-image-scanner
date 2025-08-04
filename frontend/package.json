@@ -23,7 +23,6 @@
     "@mui/x-license-pro": "6.10.2",
     "@nivo/core": "^0.87.0",
     "@nivo/line": "^0.87.0",
-    "@types/express": "^4.17.21",
     "embla-carousel-react": "^8.1.7",
     "express": "^4.19.2",
     "jwt-decode": "^4.0.0",
