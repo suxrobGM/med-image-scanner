@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ml
+  name: ai
   namespace: medscanner
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ml
+      app: ai
   template:
     metadata:
       labels:
-        app: ml
+        app: ai
     spec:
       # node_selector:
       #   kubernetes.azure.com/agentpool: gpupool # Deploy to GPU node pool
       containers:
-        - name: ml
-          image: medscannerregistry.azurecr.io/ml:latest
+        - name: ai
+          image: medscannerregistry.azurecr.io/ai:latest
           imagePullPolicy: Always
           env:
             - name: BACKEND_URL
@@ -31,12 +31,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ml
+  name: ai
   namespace: medscanner
 spec:
   type: ClusterIP
   selector:
-    app: ml
+    app: ai
   ports:
     - port: 80
       name: http

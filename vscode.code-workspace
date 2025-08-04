@@ -13,8 +13,8 @@
 			"path": "frontend"
 		},
 		{
-			"name": "ML",
-			"path": "ml"
+			"name": "AI Integration",
+			"path": "ai"
 		}
 	],
 	"settings": {}
